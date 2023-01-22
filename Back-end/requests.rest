@@ -1,0 +1,27 @@
+### Ping
+GET http://localhost:3003/users
+Content-Type: application/json
+Authorization: Bearer ACCESS-TOKEN
+
+{
+     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMGZlNmE0LWIyYmYtNGJkOC1iMzVhLTdhZjUzYjdkZWNkOSIsImlhdCI6MTY3NDMyMTM0Nn0.NO-jpqk5Tks8SDWp8lT791m5PnUfZLlD1V02NFOqyzE"
+}
+
+### Signup
+POST http://localhost:3003/users/register
+Content-Type: application/json
+
+{
+    "name": "Fernada",
+    "email": "teste27@gmail.com",
+    "password": "o0zane0o"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "teste2@gmail.com",
+    "password": "o0zane0o"
+}
