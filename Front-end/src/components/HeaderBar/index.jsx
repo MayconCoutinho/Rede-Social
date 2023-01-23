@@ -2,7 +2,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
-import { Avatar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -16,6 +15,7 @@ import { alpha, styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useContext } from "react";
 import { AuthContext } from "../../context/Auth";
+import { AvatarPerfil } from '../AvatarPerfil';
 import MenuHamburguer from '../MenuHamburguer';
 
 
@@ -153,7 +153,7 @@ export default function HeaderBar() {
           aria-haspopup="true"
           color="inherit"
         >
-      <Avatar sx={{  bgcolor: `rgb(${ headerBarUserInfo?.rgb})` }}> {headerBarUserInfo?.name[0].toUpperCase()} </Avatar>
+          <AvatarPerfil/>
         </IconButton>
         <p
           onClick={() => {signout()}}
@@ -219,7 +219,7 @@ export default function HeaderBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-      <Avatar sx={{  bgcolor: `rgb(${ headerBarUserInfo?.rgb})`}}>{headerBarUserInfo?.name[0].toUpperCase()}</Avatar>
+              <AvatarPerfil/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

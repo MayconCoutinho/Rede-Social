@@ -10,6 +10,7 @@ export class UsersDataBase {
             email: user.getEmail(),
             password: user.getPassword(),
             rgb: user.getRGB(),
+            imgPerfil: user.getImgPerfil()
         }
         return userDB
     }
@@ -64,6 +65,5 @@ export class UsersDataBase {
         const userDB = this.toUserDBModel(user)
         const db = FirebaseConfigChave()
         setDoc(doc(db, "usuarios", userDB.id), { userDB });
-        return "foi"
     }
 }

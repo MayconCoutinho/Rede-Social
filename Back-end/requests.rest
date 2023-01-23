@@ -12,9 +12,9 @@ POST http://localhost:3003/users/register
 Content-Type: application/json
 
 {
-    "name": "Fernada",
-    "email": "teste27@gmail.com",
-    "password": "o0zane0o"
+    "name": "Zane",
+    "email": "teste270@gmail.com",
+    "password": "123456"
 }
 
 ### Login
@@ -22,6 +22,6 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "teste2@gmail.com",
-    "password": "o0zane0o"
+    "email": "teste222@gmail.com",
+    "password": "123456"
 }

@@ -33,6 +33,7 @@ export const FeedCard = () => {
       <CardMedia
         component="img"
         height="194"
+        loading="lazy"
         image="https://img.freepik.com/fotos-premium/polvo-grelhado-com-batatas-alho-e-salsa_69593-8893.jpg?size=626&ext=jpg"
         alt="Paella dish"
       />

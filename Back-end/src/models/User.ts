@@ -4,6 +4,7 @@ export interface IUserDB {
   email: string,
   password: string,
   rgb: [],
+  imgPerfil:  {} | null
 }
 
 export class User {
@@ -13,6 +14,7 @@ export class User {
       private email: string,
       private password: string,
       private rgb: [],
+      private imgPerfil : {} | null
   ) {}
 
   public getId = () => {
@@ -33,6 +35,9 @@ export class User {
   public getRGB = () => {
     return this.rgb
 }
+public getImgPerfil = () => {
+  return this.imgPerfil
+}
   public setId = (newId: string) => {
       this.id = newId
   }
@@ -49,6 +54,9 @@ export class User {
   }
   public setRgb = (newRGB: []) => {
     this.rgb = newRGB
+}
+public setImgPerfil = (newImgPerfil:  {} | null) => {
+  this.imgPerfil = newImgPerfil
 }
 }
 
