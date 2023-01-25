@@ -1,13 +1,9 @@
 import { Avatar } from "@mui/material";
-import { useContext } from "react";
-import { AuthContext } from "../../context/Auth";
 
-export const AvatarPerfil = () => {
-  const { headerBarUserInfo } = useContext(AuthContext)
-
-  if (headerBarUserInfo?.imgPerfil === null) {
-    return <Avatar sx={{ bgcolor: `rgb(${headerBarUserInfo?.rgb})` }}> {headerBarUserInfo?.name[0].toUpperCase()} </Avatar>
+export const AvatarPerfil = ({rgbColor, name, perfilImg }) => {
+  if ( perfilImg === null) {
+    return <Avatar sx={{ bgcolor: `rgb(${rgbColor})` }}> {name.toUpperCase()} </Avatar>
   } else {
-      return <Avatar alt={headerBarUserInfo?.name}src={headerBarUserInfo?.imgPerfil} />
+      return <Avatar alt={name}src={perfilImg} />
   }
 }

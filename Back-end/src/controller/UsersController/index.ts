@@ -10,8 +10,6 @@ export class UsersController {
     public getUsers = async (req: Request, res: Response) => {
         try {
             const  token : string | undefined = req.headers.authorization
-            console.log(token)
-
             const response = await this.usersBusiness.getUsersBussines(token)
             res.status(200).send(response)
         } catch (error) {
@@ -22,19 +20,6 @@ export class UsersController {
             res.status(500).send({ message: "Erro inesperado no endpoint ping" })
         }
     }
-    // public getTokenValidation = async (req: Request, res: Response) => {
-    //     try {
-    //         const token = req.params.token
-    //         const response = await this.usersBusiness.getTokenValidationBussines(token)
-    //         res.status(200).send(response)
-    //     } catch (error) {
-	// 		console.log(error)
-    //         if (error instanceof BaseError) {
-    //             return res.status(error.statusCode).send({ message: error.message })
-    //         }
-    //         res.status(500).send({ message: "Erro inesperado no endpoint ping" })
-    //     }
-    // }
     public postUser = async (req: Request, res: Response) => {
         try {
             const response = "await this.usersBusiness.getUsersBussines()"
@@ -70,7 +55,6 @@ export class UsersController {
                 email: req.body.email,
                 password: req.body.password
             }
-            console.table(input)
             const response = await this.usersBusiness.login(input)
             res.status(200).send(response)
         } catch (error) {

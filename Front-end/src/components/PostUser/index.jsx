@@ -6,7 +6,7 @@ import { MdAddPhotoAlternate, MdOutlineEmojiEmotions } from "react-icons/md";
 import { RiVideoAddFill } from "react-icons/ri";
 import { AuthContext } from "../../context/Auth";
 import { AvatarPerfil } from '../AvatarPerfil';
-import ModalPost from '../ModalPost';
+import ModalPost from './ModalPost';
 
 export const PostUser = () => {
   const [open, setOpen] = useState(false);

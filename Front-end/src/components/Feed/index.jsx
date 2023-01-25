@@ -1,7 +1,11 @@
-import { Box, Grid } from "@mui/material"
-import { FeedCard } from "../FeedCard"
+import { Box, Grid } from "@mui/material";
+import { useContext } from "react";
+import { AuthContext } from "../../context/Auth";
+import { FeedCard } from "./FeedCard";
 
-export const GridFeedCard = () => {
+export const GridFeed = () => {
+  const { feed } = useContext(AuthContext)
+
   const teste = [1, 2, 3, 4, 5, 6, 7, 8, 10]
   return (
     <>

@@ -16,7 +16,7 @@ import * as React from 'react';
 import { useContext } from "react";
 import { AuthContext } from "../../context/Auth";
 import { AvatarPerfil } from '../AvatarPerfil';
-import MenuHamburguer from '../MenuHamburguer';
+import MenuHamburguer from './MenuHamburguer';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function HeaderBar() {
+export const HeaderBar = ({rgbColor,name, perfilImg}) => {
   const { headerBarUserInfo, signout } = useContext(AuthContext)  
 
   const [anchorEl, setAnchorEl] = React.useState(null);

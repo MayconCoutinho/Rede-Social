@@ -12,7 +12,7 @@ export const PostLogin =  async (email, password) => {
         
         return response.data
       } catch(error){
-        console.log(error.response)
+        alert(error.response.data.message)
       } 
 };
 export const PostSignup =  async (formValues) => {
@@ -30,9 +30,19 @@ export const PostSignup =  async (formValues) => {
       alert("Algo deu errado")
     } 
 };
-export const getInfoUser =  async (token) => {
+export const GetInfoUser =  async (token) => {
   try {
       const response = await axios.get(`${BASE_URL}`, { headers: { authorization: token }})
+      console.log(response.data)
+      
+      return response.data
+    } catch(error){
+      console.log(error.response)
+    } 
+};
+export const GetFeed =  async (token) => {
+  try {
+      const response = await axios.get(`${BASE_URL}posts`, { headers: { authorization: token }})
       console.log(response.data)
       
       return response.data
