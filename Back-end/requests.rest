@@ -21,9 +21,9 @@ POST http://localhost:3003/posts
 Content-Type: application/json
 
 {
-    "idUser": "a23ea997-3854-41a2-9c0f-3ef7a464a6d4",
-    "texto": "Um é tudo, tudo é um O tudo é o mundo, o um sou eu! Tudo é criado a partir de um E tudo retorna a um Tudo existe graças ao um E tudo está contido no um! Mas só com esses ''uns'' juntos, o ''tudo'' pode existir",
-    "img": "http://pm1.narvii.com/6305/de85076ea47ebc9c9e8fccf47bc5dc1544a75fd8_00.jpg"
+    "idUser": "f27d54fd-2edb-4653-af60-bb311a00a5b3",
+    "texto": "olha eu kkkkk",
+    "img": "https://i0.wp.com/www.biotadofuturo.com.br/wp-content/uploads/2015/01/Dan-Mihai.jpg?fit=1024%2C683&ssl=1"
 }
 
 ### Signup
@@ -41,6 +41,6 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "teste@gmail.com",
+    "email": "Toshinori@gmail.com",
     "password": "123456"
 }

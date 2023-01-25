@@ -7,7 +7,7 @@ export const PostLogin =  async (email, password) => {
           email,
           password
       }
-        const response = await axios.post(`${BASE_URL}login`, body)
+        const response = await axios.post(`${BASE_URL}users/login`, body)
         console.log(response.data)
         
         return response.data
@@ -22,7 +22,7 @@ export const PostSignup =  async (formValues) => {
         email : formValues.email,
         password: formValues.password
     }
-      const response = await axios.post(`${BASE_URL}register`, body)
+      const response = await axios.post(`${BASE_URL}users/register`, body)
       alert(response.data.message)
       
       return response.data
@@ -32,7 +32,7 @@ export const PostSignup =  async (formValues) => {
 };
 export const GetInfoUser =  async (token) => {
   try {
-      const response = await axios.get(`${BASE_URL}`, { headers: { authorization: token }})
+      const response = await axios.get(`${BASE_URL}users`, { headers: { authorization: token }})
       console.log(response.data)
       
       return response.data
@@ -42,9 +42,7 @@ export const GetInfoUser =  async (token) => {
 };
 export const GetFeed =  async (token) => {
   try {
-      const response = await axios.get(`${BASE_URL}posts`, { headers: { authorization: token }})
-      console.log(response.data)
-      
+      const response = await axios.get(`${BASE_URL}posts`, { headers: { authorization: token }})      
       return response.data
     } catch(error){
       console.log(error.response)

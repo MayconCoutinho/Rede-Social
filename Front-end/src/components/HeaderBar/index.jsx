@@ -18,7 +18,6 @@ import { AuthContext } from "../../context/Auth";
 import { AvatarPerfil } from '../AvatarPerfil';
 import MenuHamburguer from './MenuHamburguer';
 
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -88,7 +87,6 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-    
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -153,7 +151,7 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
           aria-haspopup="true"
           color="inherit"
         >
-          <AvatarPerfil/>
+          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
         </IconButton>
         <p
           onClick={() => {signout()}}
@@ -219,7 +217,7 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AvatarPerfil/>
+          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

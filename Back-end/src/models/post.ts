@@ -1,7 +1,10 @@
 export interface IpostDB {
   id: string,
   idUser: string,
-  img: string,
+  name: string,
+  imgPerfil: string,
+  rgb: [],
+  img: string | null,
   texto: string,
   idUserLike: string[] | null,
   date: string
@@ -15,7 +18,10 @@ export class Post {
   constructor(
     private id: string,
     private idUser: string,
-    private img: string,
+    private name: string,
+    private imgPerfil: string,
+    private   rgb: [],
+    private img: string | null,
     private texto: string,
     private idUserLike: string[] | null,
     private date: string
@@ -25,6 +31,15 @@ export class Post {
   }
   public getIdUser = () => {
     return this.idUser
+  }
+  public getName = () => {
+    return this.name
+  }
+  public getImgPerfil = () => {
+    return this.imgPerfil
+  }
+  public getRGB = () => {
+    return this.rgb
   }
   public getImg = () => {
     return this.img
@@ -44,7 +59,16 @@ export class Post {
   public setIdUser = (newIdUser: string) => {
     this.idUser = newIdUser
   }
-  public setImg = (newImg: string) => {
+  public setName = (newName: string) => {
+    this.name = newName
+  }  
+  public setImgPerfil = (newImgPerfil: string) => {
+    this.imgPerfil = newImgPerfil
+  }
+  public setRgb = (newRGB: []) => {
+    this.rgb = newRGB
+  }
+  public setImg = (newImg: string | null) => {
     this.img = newImg
   }
   public setTexto = (newTexto: string) => {

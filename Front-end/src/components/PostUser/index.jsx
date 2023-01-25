@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/Auth";
 import { AvatarPerfil } from '../AvatarPerfil';
 import ModalPost from './ModalPost';
 
-export const PostUser = () => {
+export const PostUser = ({ rgbColor, name, perfilImg }) => {
   const [open, setOpen] = useState(false);
   const { headerBarUserInfo } = useContext(AuthContext)
 
@@ -53,7 +53,7 @@ export const PostUser = () => {
                 onClick={() => alert("Representativo, não faz nada")}
                 color="inherit"
               >
-                <AvatarPerfil />
+                <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor} />
               </IconButton>
               <Stack
                 onClick={handleOpen}
@@ -105,6 +105,7 @@ export const PostUser = () => {
         handleOpen={handleOpen}
         open={open}
         setOpen={setOpen}
+        name={name}
       />
     </>
   )

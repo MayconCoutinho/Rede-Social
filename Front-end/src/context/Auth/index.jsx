@@ -19,6 +19,7 @@ export const AuthProvider = ({children}) => {
 
             const getFeed = await GetFeed()
             setFeed(getFeed)
+
         }
         InfoUser()
     }, [user])

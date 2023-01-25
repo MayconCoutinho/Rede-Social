@@ -1,3 +1,4 @@
+import { UsersDataBase } from "../../database/UsersDataBase"
 import { PostsDataBase } from "../../database/postsDataBase"
 import { HeadersError } from "../../errors/HeaderError"
 import { IPostInputDTO, Post } from "../../models/post"
@@ -8,7 +9,8 @@ export class PostsBusiness {
   constructor(
     private postsDataBase: PostsDataBase,
     private authenticator: Authenticator,
-    private idGenerator:  IdGenerator
+    private idGenerator:  IdGenerator,
+    private usersDatabase: UsersDataBase,
   ) { }
   public getPostBussines = async (token: string | undefined) => {
     if(!token){
@@ -27,6 +29,10 @@ export class PostsBusiness {
     const { idUser, texto, img } = input
 
     const id = this.idGenerator.generate()
+    const getInfo = await this.usersDatabase.findByIdLogin(idUser)
+    const name = getInfo?.name
+    const imgPerfil = getInfo?.imgPerfil
+    const rgb = getInfo?.rgb
     const date = new Date().toISOString()
     console.log(date)
     const idUserLike = null
@@ -34,6 +40,9 @@ export class PostsBusiness {
     const post = new Post(
       id,
       idUser,
+      name,
+      imgPerfil,
+      rgb,
       img,
       texto,
       idUserLike,

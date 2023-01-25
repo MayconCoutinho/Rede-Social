@@ -1,12 +1,7 @@
 import { Box, Grid } from "@mui/material";
-import { useContext } from "react";
-import { AuthContext } from "../../context/Auth";
 import { FeedCard } from "./FeedCard";
 
-export const GridFeed = () => {
-  const { feed } = useContext(AuthContext)
-
-  const teste = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+export const GridFeed = ({feed}) => {
   return (
     <>
       <Grid
@@ -16,12 +11,21 @@ export const GridFeed = () => {
         direction="row"
         justifyContent="space-evenly"
         alignItems="center"
-        
       >
-        {teste.map((item) => {
+        {feed && feed?.map((item) => {
           return (<>
             <Box marginBottom={4}>
-              <FeedCard />
+              <FeedCard 
+              date={item?.date}
+              id={item?.id}
+              idUser={item?.idUser}
+              name={item?.name}
+              perfilImg={item?.imgPerfil}
+              rgb={item?.rgb}
+              idUserLike={item?.idUserLike}
+              img={item?.img}
+              texto={item?.texto}
+              />
             </Box>
           </>)
         })}

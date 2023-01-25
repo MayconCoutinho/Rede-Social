@@ -7,6 +7,9 @@ export class PostsDataBase {
         return {
             id: user.getId(),
             idUser:  user.getIdUser(),
+            name:  user.getName(),
+            imgPerfil:  user.getImgPerfil(),
+            rgb: user.getRGB(),
             img:  user.getImg(),
             texto:  user.getTexto(),
             idUserLike:  user.getIdUserLike(),
@@ -26,10 +29,8 @@ export class PostsDataBase {
     }
     public createPost = async (post: any) => {
         console.table(this.toPostDBModel(post))
-
         const postDB = this.toPostDBModel(post)
         const db = FirebaseConfigChave()
         setDoc(doc(db, "Feed", postDB.id), postDB );
     }
-
 }
