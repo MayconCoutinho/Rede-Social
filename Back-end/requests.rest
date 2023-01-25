@@ -4,7 +4,26 @@ Content-Type: application/json
 Authorization: Bearer ACCESS-TOKEN
 
 {
-     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMGZlNmE0LWIyYmYtNGJkOC1iMzVhLTdhZjUzYjdkZWNkOSIsImlhdCI6MTY3NDMyMTM0Nn0.NO-jpqk5Tks8SDWp8lT791m5PnUfZLlD1V02NFOqyzE"
+     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyM2VhOTk3LTM4NTQtNDFhMi05YzBmLTNlZjdhNDY0YTZkNCIsImlhdCI6MTY3NDU3MDQ4Mn0.UzLX_I-Qtd59cF-0nanlOq67L4ycn72WyriVjtlQOeQ"
+}
+
+### Pegar todos os Posts
+GET http://localhost:3003/posts
+Content-Type: application/json
+Authorization: Bearer ACCESS-TOKEN
+
+{
+     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyM2VhOTk3LTM4NTQtNDFhMi05YzBmLTNlZjdhNDY0YTZkNCIsImlhdCI6MTY3NDU3MDQ4Mn0.UzLX_I-Qtd59cF-0nanlOq67L4ycn72WyriVjtlQOeQ"
+}
+
+### Post Feed
+POST http://localhost:3003/posts
+Content-Type: application/json
+
+{
+    "idUser": "f27d54fd-2edb-4653-af60-bb311a00a5b3",
+    "texto": "olha eu kkkkk",
+    "img": "https://i0.wp.com/www.biotadofuturo.com.br/wp-content/uploads/2015/01/Dan-Mihai.jpg?fit=1024%2C683&ssl=1"
 }
 
 ### Signup
@@ -12,9 +31,9 @@ POST http://localhost:3003/users/register
 Content-Type: application/json
 
 {
-    "name": "Fernada",
-    "email": "teste27@gmail.com",
-    "password": "o0zane0o"
+    "name": "Zane",
+    "email": "teste270@gmail.com",
+    "password": "123456"
 }
 
 ### Login
@@ -22,6 +41,6 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "teste2@gmail.com",
-    "password": "o0zane0o"
+    "email": "Toshinori@gmail.com",
+    "password": "123456"
 }

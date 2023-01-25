@@ -2,7 +2,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
-import { Avatar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -16,8 +15,8 @@ import { alpha, styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useContext } from "react";
 import { AuthContext } from "../../context/Auth";
-import MenuHamburguer from '../MenuHamburguer';
-
+import { AvatarPerfil } from '../AvatarPerfil';
+import MenuHamburguer from './MenuHamburguer';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function HeaderBar() {
+export const HeaderBar = ({rgbColor,name, perfilImg}) => {
   const { headerBarUserInfo, signout } = useContext(AuthContext)  
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -88,7 +87,6 @@ export default function HeaderBar() {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-    
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -153,7 +151,7 @@ export default function HeaderBar() {
           aria-haspopup="true"
           color="inherit"
         >
-      <Avatar sx={{  bgcolor: `rgb(${ headerBarUserInfo?.rgb})` }}> {headerBarUserInfo?.name[0].toUpperCase()} </Avatar>
+          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
         </IconButton>
         <p
           onClick={() => {signout()}}
@@ -219,7 +217,7 @@ export default function HeaderBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-      <Avatar sx={{  bgcolor: `rgb(${ headerBarUserInfo?.rgb})`}}>{headerBarUserInfo?.name[0].toUpperCase()}</Avatar>
+          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

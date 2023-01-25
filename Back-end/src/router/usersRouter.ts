@@ -18,8 +18,6 @@ const usersController = new UsersController(
         new Authenticator()
     )
 )
-
-// usersRouter.get("/login/:token", usersController.getTokenValidation)
 usersRouter.get("/", usersController.getUsers)
 usersRouter.post("/register", usersController.signup)
 usersRouter.post("/login", usersController.login)

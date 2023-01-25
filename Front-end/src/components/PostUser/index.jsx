@@ -1,15 +1,16 @@
-import { Avatar, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { Box } from "@mui/system";
 import { useContext, useState } from 'react';
 import { MdAddPhotoAlternate, MdOutlineEmojiEmotions } from "react-icons/md";
 import { RiVideoAddFill } from "react-icons/ri";
 import { AuthContext } from "../../context/Auth";
-import ModalPost from '../ModalPost';
+import { AvatarPerfil } from '../AvatarPerfil';
+import ModalPost from './ModalPost';
 
-export const PostUser = () => {
+export const PostUser = ({ rgbColor, name, perfilImg }) => {
   const [open, setOpen] = useState(false);
-  const { headerBarUserInfo } = useContext(AuthContext)  
+  const { headerBarUserInfo } = useContext(AuthContext)
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -52,7 +53,7 @@ export const PostUser = () => {
                 onClick={() => alert("Representativo, não faz nada")}
                 color="inherit"
               >
-                <Avatar sx={{ bgcolor:  `rgb(${ headerBarUserInfo?.rgb})`}}>{headerBarUserInfo?.name[0].toUpperCase()}</Avatar>
+                <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor} />
               </IconButton>
               <Stack
                 onClick={handleOpen}
@@ -104,6 +105,7 @@ export const PostUser = () => {
         handleOpen={handleOpen}
         open={open}
         setOpen={setOpen}
+        name={name}
       />
     </>
   )

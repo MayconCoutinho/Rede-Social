@@ -11,14 +11,13 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 450,
+  width: "300px",
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
 };
 
-export default function ModalPost({open, setOpen,handleOpen, handleClose}) {
+export default function ModalPost({name, open, setOpen,handleOpen, handleClose}) {
 
   return (
     <div>
@@ -49,7 +48,8 @@ export default function ModalPost({open, setOpen,handleOpen, handleClose}) {
               id="outlined-textarea"
               multiline
               fontSize={15}
-              placeholder='No que você esta pensando, nome?'
+              placeholder={`No que você esta pensando, ${name}?`}
+              
             />
           </Box>
         </Fade>

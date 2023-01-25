@@ -1,16 +1,20 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Button, CircularProgress, FormControl, IconButton, Input, InputAdornment, InputLabel, Stack, TextField } from "@mui/material";
+import { CheckBox, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Box, Button, CircularProgress, FormControl, IconButton, Input, InputAdornment, InputLabel, Stack, TextField, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/Auth";
 import { useForm } from "../../hooks/useForm";
 import { goToCadastroPage } from "../../routes/coordinator";
 
-
-
 export const Login = () => {
   const navigate = useNavigate();
   const { signin, loading } = useContext(AuthContext)
+
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const { formValues, onChange } = useForm({
     email: "",
@@ -71,52 +75,65 @@ export const Login = () => {
             spacing={2}>
             Social
             <Stack>
+              <TextField
+                id="standard-basic"
+                label="Email"
+                variant="standard"
+                name="email"
+                type="email"
+                onChange={onChange}
 
-                <TextField
-                  id="standard-basic"
-                  label="Email"
-                  variant="standard"
-                  name="email"
-                  type="email"
+                sx={{
+                  width: 300,
+                  marginTop: 8,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              />
+              <FormControl variant="standard"
+                sx={{
+                  width: 300,
+                  marginTop: 7,
+                  marginBottom: 5,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}>
+                <InputLabel htmlFor="standard-adornment-password">Senha</InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={values.showPassword ? 'text' : 'password'}
+                  value={onChange.password}
+                  name="password"
                   onChange={onChange}
-                  
-                  sx={{
-                    width: 300,
-                    marginTop: 8,
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                  }}
+                  required
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
-                <FormControl variant="standard"
-                  sx={{
-                    width: 300,
-                    marginTop: 7,
-                    marginBottom: 7,
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                  }}>
-                  <InputLabel htmlFor="standard-adornment-password">Senha</InputLabel>
-                  <Input
-                    id="standard-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={onChange.password}
-                    name="password"
-                    onChange={onChange}
-                    required
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
+              </FormControl>
               <Stack spacing={2} >
+                <Stack
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  spacing={2}
+                  marginBottom={3}
+                >
+                  <CheckBox
+                    checked={checked}
+                    onChange={handleChange}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                  />
+                  <Typography variant="caption"> Deseja se manter logado?</Typography>
+                </Stack>
                 <Button
                   type="submit"
                   onClick={() => { LoginUser() }}

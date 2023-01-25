@@ -4,14 +4,14 @@ import { FirebaseConfigChave } from "../firebase";
 
 export class UsersDataBase {
     public toUserDBModel = (user: User): IUserDB => {
-        const userDB: IUserDB = {
+        return {
             id: user.getId(),
             name: user.getName(),
             email: user.getEmail(),
             password: user.getPassword(),
             rgb: user.getRGB(),
+            imgPerfil: user.getImgPerfil()
         }
-        return userDB
     }
     public getAllUsersDataBase = async () => {
         try {
@@ -19,10 +19,9 @@ export class UsersDataBase {
             const userCollectionRef = collection(db, "usuarios")
             const querySnapshot = await getDocs(userCollectionRef)
             const getUsers = querySnapshot.docs.map((doc) => doc.data())
-            const result = getUsers?.filter((item) => { return item?.userDB}).map((item: any) => {
-                return item?.userDB
+            const result = getUsers?.filter((item) => { return item }).map((item: any) => {
+                return item
             })
-            
             return result
         } catch (error: any) {
             console.log(error.response)
@@ -51,19 +50,29 @@ export class UsersDataBase {
     }
     public findByEmailLogin = async (email: string): Promise<any> => {
         const getUserfindByEmail = await this.getAllUsersDataBase()
-        const mapEmail: IUserDB[] | undefined = getUserfindByEmail?.map((item) => { return item })
-        const checkingAllEmail: any = mapEmail?.map((item: any) => {
+        const mapEmail: void[] | undefined = getUserfindByEmail?.map((item) => { return item })
+        const checkingAllEmail: any = mapEmail?.filter((item: any) => {
             if (item?.email === email) {
-                return item
+               return item
             }
             return undefined
         })
         return checkingAllEmail[0]
     }
+    public findByIdLogin = async (id: string): Promise<any> => {
+        const getUserfindByEmail = await this.getAllUsersDataBase()
+        const mapEmail: void[] | undefined = getUserfindByEmail?.map((item) => { return item })
+        const checkingAll: any = mapEmail?.filter((item: any) => {
+            if (item?.id === id) {
+               return item
+            }
+            return undefined
+        })
+        return checkingAll[0]
+    }
     public createUser = async (user: any) => {
         const userDB = this.toUserDBModel(user)
         const db = FirebaseConfigChave()
-        setDoc(doc(db, "usuarios", userDB.id), { userDB });
-        return "foi"
+        setDoc(doc(db, "usuarios", userDB.id),  userDB );
     }
 }

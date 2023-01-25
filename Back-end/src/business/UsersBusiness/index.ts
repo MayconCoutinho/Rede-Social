@@ -18,7 +18,6 @@ export class UsersBusiness {
     private hashManager: HashManager,
     private authenticator: Authenticator
   ) { }
-
   public getUsersBussines = async (token: string | undefined) => {
     if(!token){
       throw new HeadersError()
@@ -28,12 +27,6 @@ export class UsersBusiness {
     const response = await this.usersDataBase.getUsersDataBase(validation)
     return response
   }
-  // public getTokenValidationBussines = async (token: string) => {
-  //   const validation = this.authenticator.getTokenPayload(token)
-    
-  //   console.log("retorno da validation",validation)
-  //   return validation
-  // }
   public signup = async (input: ISignupInputDTO): Promise<ISignupOutputDTO> => {
     const { name, email, password } = input
 
@@ -63,6 +56,7 @@ export class UsersBusiness {
     const id = this.idGenerator.generate()
     const hashedPassword = await this.hashManager.hash(password)
     const rgb: any = this.rgbGenerator.generateRGB()
+    const imgPerfil = null
 
     const user = new User(
       id,
@@ -70,13 +64,13 @@ export class UsersBusiness {
       email,
       hashedPassword,
       rgb,
+      imgPerfil 
     )
     await this.usersDataBase.createUser(user)
 
     const payload: ITokenPayload = {
       id: user.getId()
     }
-
     const token = this.authenticator.generateToken(payload)
 
     const response: ISignupOutputDTO = {
@@ -86,7 +80,6 @@ export class UsersBusiness {
 
     return response
   }
-
   public login = async (input: ILoginInputDTO): Promise<ILoginOutputDTO> => {
     const { email, password } = input
 
@@ -102,44 +95,35 @@ export class UsersBusiness {
     if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
       throw new ParamsError("Parâmetro 'email' inválido")
     }
-
-
     const userDB = await this.usersDataBase.findByEmailLogin(email)
 
     if (!userDB) {
       throw new NotFoundError("Email não cadastrado")
     }
-
     const user = new User(
       userDB.id,
       userDB.name,
       userDB.email,
       userDB.password,
-      userDB.rgb
+      userDB.rgb,
+      userDB.imgPerfil
     )
-
     const isPasswordCorrect = await this.hashManager.compare(
       password,
       user.getPassword()
     )
-
     if (!isPasswordCorrect) {
       throw new AuthenticationError("Password incorreto")
     }
-
     const payload: ITokenPayload = {
       id: user.getId()
     }
-
     const token = this.authenticator.generateToken(payload)
 
     const response: ILoginOutputDTO = {
       message: "Login realizado com sucesso",
       token
     }
-
-    console.table(token)
-
     return response
   }
 }
