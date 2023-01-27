@@ -21,14 +21,26 @@ export class PostsDataBase {
             const db = FirebaseConfigChave()
             const userCollectionRef = collection(db, "Feed")
             const querySnapshot = await getDocs(userCollectionRef)
-            const result = querySnapshot.docs.map((doc) => doc.data())            
-            return result
+            const result = querySnapshot.docs.map((doc) => doc.data())
+            const filtrandoDadosData = (dataCompleta: any) => {
+                const limpandoData = dataCompleta.substr(0, 10).split('-')
+                const resultData = limpandoData[0] + limpandoData[1] + limpandoData[2]
+                const limpandoHora = dataCompleta.substr(11, 8).split(":")
+                const resultHota = limpandoHora[0] + limpandoHora[1] + limpandoHora[2]
+                const DataHora = resultData + resultHota
+                return DataHora
+              }     
+              const response = result.sort((data1: any, data2: any) => {
+                return filtrandoDadosData(data1.date) - filtrandoDadosData(data2.date)
+              })
+
+            return response.reverse()
         } catch (error: any) {
             console.log(error.response)
         }
     }
     public createPost = async (post: any) => {
-        console.table(this.toPostDBModel(post))
+        console.log(this.toPostDBModel(post))
         const postDB = this.toPostDBModel(post)
         const db = FirebaseConfigChave()
         setDoc(doc(db, "Feed", postDB.id), postDB );

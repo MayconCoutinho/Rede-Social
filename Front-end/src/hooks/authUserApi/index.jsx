@@ -12,7 +12,6 @@ export const UserLogin =  async (email, password) => {
           password
       }
         const response = await axios.post(`${BASE_URL}login`, body)
-        console.log(response.data)
         return response.data
       } catch(error){
         console.log(error.response)
