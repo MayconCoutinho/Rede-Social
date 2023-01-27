@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/Auth";
 import { AvatarPerfil } from '../AvatarPerfil';
 import ModalPost from './ModalPost';
 
-export const PostUser = ({ rgbColor, name, perfilImg }) => {
+export const PostUser = ({ rgbColor, name, perfilImg, user, UpdatePage }) => {
   const [open, setOpen] = useState(false);
   const { headerBarUserInfo } = useContext(AuthContext)
 
@@ -106,6 +106,8 @@ export const PostUser = ({ rgbColor, name, perfilImg }) => {
         open={open}
         setOpen={setOpen}
         name={name}
+        user={user}
+        UpdatePage={UpdatePage}
       />
     </>
   )

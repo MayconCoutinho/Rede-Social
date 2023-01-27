@@ -10,9 +10,9 @@ export interface IpostDB {
   date: string
 }
 export interface IPostInputDTO {
-  idUser: string,
+  idUserToken: string,
   texto: string,
-  img: string,
+  img: any,
 }
 export class Post {
   constructor(

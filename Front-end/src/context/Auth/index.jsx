@@ -4,36 +4,37 @@ import { GetFeed, GetInfoUser, PostLogin } from "../../services";
 
 export const AuthContext = createContext({})
 
-export const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null)
-    const [headerBarUserInfo, setHeaderBarUserInfo] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [feed, setFeed] = useState(null)
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null)
+  const [headerBarUserInfo, setHeaderBarUserInfo] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [feed, setFeed] = useState(null)
+  const [refreshPage, setRefreshPage] = useState(true)
 
-    useEffect(() => { 
-        const InfoUser = async () => {
-            setLoading(true)
-            const getInfoUser = await GetInfoUser(user) 
-            setLoading(false)
-            setHeaderBarUserInfo(getInfoUser[0])
-
-            const getFeed = await GetFeed()
-            setFeed(getFeed)
-
-        }
-        InfoUser()
-    }, [user])
-
-    const signin =  async (email, password, navigate) => {
-            const response = await PostLogin(email, password)
-            setUser(response.token)
-            goToHomePage(navigate)
+  const signin = async (email, password, navigate) => {
+    const response = await PostLogin(email, password)
+    setUser(response.token)
+    goToHomePage(navigate)
+  }
+  const signout = () => {
+    setUser(null)
+  }
+  const  UpdatePage = () => {
+    setRefreshPage(!refreshPage)
+  }
+  useEffect(() => {
+    const InfoUser = async () => {
+      setLoading(true)
+      const getInfoUser = await GetInfoUser(user)
+      setLoading(false)
+      setHeaderBarUserInfo(getInfoUser[0])
+      const getFeed = await GetFeed()
+      setFeed(getFeed)
     }
-    const signout = () => {
-        setUser(null)
-    }
+    InfoUser()
+  }, [user, refreshPage])
 
-    return (
-        <AuthContext.Provider value={{user, signin, signout, headerBarUserInfo, loading, feed}}>{children}</AuthContext.Provider>
-    )
+  return (
+    <AuthContext.Provider value={{ user, signin, signout, headerBarUserInfo, loading, feed, UpdatePage }}>{children}</AuthContext.Provider>
+  )
 } 

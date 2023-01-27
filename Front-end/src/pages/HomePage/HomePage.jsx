@@ -6,7 +6,7 @@ import { PostUser } from "../../components/PostUser";
 import { AuthContext } from "../../context/Auth";
 
 export const HomePage = () => {
-  const { user, signin, signout, headerBarUserInfo, loading, feed } = useContext(AuthContext)
+  const { user, signin, signout, headerBarUserInfo, loading, feed, UpdatePage} = useContext(AuthContext)
 
   return (
     <>
@@ -21,6 +21,8 @@ export const HomePage = () => {
         rgbColor={headerBarUserInfo?.rgb}
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}
+        user={user}
+        UpdatePage={UpdatePage}
       />
       <GridFeed feed={feed}/>
       <Footer />
