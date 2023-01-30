@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { GridFeed } from "../../components/Feed";
 import { Footer } from "../../components/Footer";
 import { HeaderBar } from "../../components/HeaderBar";
-import { PostUser } from "../../components/PostUser";
+import { PerfilUser } from "../../components/PerfilUser";
 import { AuthContext } from "../../context/Auth";
 
-export const HomePage = () => {
-  const { user, headerBarUserInfo, feed, UpdatePage} = useContext(AuthContext)
+export const PerfilPage = () => {
+  const { user, headerBarUserInfo, feed, UpdatePage } = useContext(AuthContext)
 
   return (
     <>
@@ -15,14 +14,11 @@ export const HomePage = () => {
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}
       />
-      <PostUser
+      <PerfilUser
         rgbColor={headerBarUserInfo?.rgb}
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}
-        user={user}
-        UpdatePage={UpdatePage}
       />
-      <GridFeed feed={feed}/>
       <Footer />
     </>
   )

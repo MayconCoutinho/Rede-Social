@@ -7,8 +7,9 @@ export const goToCadastroPage = (navigate) => {
 export const goToHomePage = (navigate) => {
   navigate("/")
 }
+export const goToPerfilPage = (navigate) => {
+  navigate("/Perfil")
+}
 export const goToVoltar = (navigate) => {
   navigate(-1)
 }
-
-

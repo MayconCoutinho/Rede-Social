@@ -28,7 +28,10 @@ export const PostUser = ({ rgbColor, name, perfilImg, user, UpdatePage }) => {
             height: 150,
             backgroundColor: '#fff',
             border: "1px solid #25252533",
-            borderRadius: 2
+            borderRadius: 2,
+            '@media (min-width: 600px)' : {
+              width: 600,
+            }      
           }}
         >
           <Stack

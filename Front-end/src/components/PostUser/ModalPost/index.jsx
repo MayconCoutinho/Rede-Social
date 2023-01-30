@@ -24,7 +24,7 @@ const style = {
 export default function ModalPost({ name, open, setOpen, handleOpen, handleClose, user,UpdatePage }) {
   const [img, setImg] = useState(null)
 
-  const { formValues, onChange } = useForm({
+  const { formValues, onChange, cleanFields } = useForm({
     texto: "",
   })
 
@@ -42,6 +42,7 @@ export default function ModalPost({ name, open, setOpen, handleOpen, handleClose
       formData.append('img', img)
       await PostUserFeed(formData, config)
       setImg(null)
+      cleanFields()
       UpdatePage()
     }
   }

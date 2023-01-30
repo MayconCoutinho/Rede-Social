@@ -1,16 +1,24 @@
-import { CheckBox, Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Button, CircularProgress, FormControl, IconButton, Input, InputAdornment, InputLabel, Stack, TextField, Typography } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import LoadingButton from '@mui/lab/LoadingButton';
+import { Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, Stack, TextField, Typography } from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import facebookImg from "../../assets/img/login/facebook-icon.png";
+import googleImg from "../../assets/img/login/google-icon.png";
+
 import { AuthContext } from "../../context/Auth";
 import { useForm } from "../../hooks/useForm";
 import { goToCadastroPage } from "../../routes/coordinator";
+import { FirebaseConfigChave } from "../../services/firebase";
+
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { signin, loading } = useContext(AuthContext)
-
-  const [checked, setChecked] = useState(false);
+  const { signin } = useContext(AuthContext)
+  const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -24,15 +32,10 @@ export const Login = () => {
   const [values, setValues] = useState({
     showPassword: false,
   })
-  // const Entrar = () => {
-  //   setProgresseLogin(true)
-  //   window.localStorage.setItem("tokenName",values.name)
-  //   window.localStorage.setItem("tokenPassword",values.password)
-  //   Token()
-  // }
-  const LoginUser = () => {
-    signin(formValues.email, formValues.password, navigate)
-    // goToHomePage(navigate)
+  const LoginUser = async () => {
+    setLoading(false);
+    await signin(formValues.email, formValues.password, navigate, checked)
+    setLoading(true);
   }
   const handleClickShowPassword = () => {
     setValues({
@@ -44,6 +47,26 @@ export const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const GoogleLogar = async () => {
+    const auth = getAuth(FirebaseConfigChave())
+    const provider = new GoogleAuthProvider()
+    const { _tokenResponse } = await signInWithPopup(auth, provider)
+    const { emailVerified, email, idToken } = _tokenResponse
+    if (emailVerified) {
+      setLoading(false);
+      await signin(email, idToken, navigate, checked)
+      setLoading(true);
+    }
+  }
+  const FacebookLogar = async () => {
+    const auth = getAuth(FirebaseConfigChave())
+    const provider = new FacebookAuthProvider()
+    const { _tokenResponse } = await signInWithPopup(auth, provider)
+    const { email, idToken } = _tokenResponse
+    setLoading(false);
+    await signin(email, idToken, navigate, checked)
+    setLoading(true);
+  }
 
   return (
     <>
@@ -121,21 +144,55 @@ export const Login = () => {
               </FormControl>
               <Stack spacing={2} >
                 <Stack
+                  spacing={2}
+                  marginBottom={2}
+                >
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => { GoogleLogar() }}
+                    sx={{ 
+                      backgroundColor: "#fafafa",
+                      ":hover" : {
+                        backgroundColor: "#f1f1f1",
+                      }
+                  }}
+                  >
+                    <img src={googleImg} style={{ width: 30 }} />
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => { FacebookLogar() }}
+                  >
+                    <img src={facebookImg} style={{ width: 30 }} />
+                  </Button>
+                </Stack>
+                <Stack
                   direction="row"
                   justifyContent="center"
                   alignItems="center"
                   spacing={2}
                   marginBottom={3}
                 >
-                  <CheckBox
+                  <Checkbox
                     checked={checked}
                     onChange={handleChange}
                     inputProps={{ 'aria-label': 'controlled' }}
+                    sx={{
+                      color: "#910101",
+                      '&.Mui-checked': {
+                        color: "#910101",
+                      }
+                    }}
                   />
                   <Typography variant="caption"> Deseja se manter logado?</Typography>
                 </Stack>
-                <Button
-                  type="submit"
+                <LoadingButton
+                  loading={loading}
+                  variant="outlined"
+                  loadingPosition="center"
+                  size="small"
                   onClick={() => { LoginUser() }}
                   sx={{
                     color: "#ffffff",
@@ -147,12 +204,9 @@ export const Login = () => {
                       backgroundColor: '#b13333'
                     },
                   }}
-                  size="small"
-                  variant="contained"
-                > {
-                    loading === true ? <CircularProgress sx={{ color: "#fff" }} /> : <>Entrar</>
-                  }
-                </Button>
+                >
+                  Entrar
+                </LoadingButton>
                 <Button
                   onClick={() => { goToCadastroPage(navigate) }}
                   sx={{
@@ -165,7 +219,6 @@ export const Login = () => {
                 >
                   Criar Conta
                 </Button>
-
               </Stack>
             </Stack>
           </Stack>

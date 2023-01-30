@@ -40,7 +40,6 @@ export class PostsDataBase {
         }
     }
     public createPost = async (post: any) => {
-        console.log(this.toPostDBModel(post))
         const postDB = this.toPostDBModel(post)
         const db = FirebaseConfigChave()
         setDoc(doc(db, "Feed", postDB.id), postDB );

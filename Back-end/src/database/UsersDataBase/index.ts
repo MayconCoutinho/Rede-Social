@@ -40,7 +40,7 @@ export class UsersDataBase {
     public findByEmail = async (email: string): Promise<any> => {
         const getUserfindByEmail = await this.getAllUsersDataBase()
         const mapEmail: IUserDB[] | undefined = getUserfindByEmail?.map((item) => { return item?.email })
-        const checkingAllEmail: any = mapEmail?.map((item: any) => {
+        const checkingAllEmail: any = mapEmail?.filter((item: any) => {
             if (item === email) {
                 return true
             }

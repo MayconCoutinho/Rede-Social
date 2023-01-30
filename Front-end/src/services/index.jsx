@@ -13,19 +13,19 @@ export const PostLogin =  async (email, password) => {
         alert(error.response.data.message)
       } 
 };
-export const PostSignup =  async (formValues) => {
+export const PostSignup =  async (name, email, password) => {
   try {
       const body = {
-        name: formValues.name,
-        email : formValues.email,
-        password: formValues.password
+        name,
+        email,
+        password,
     }
       const response = await axios.post(`${BASE_URL}users/register`, body)
       alert(response.data.message)
       
       return response.data
     } catch(error){
-      alert("Algo deu errado")
+      alert(error.response.data.message)
     } 
 };
 export const PostUserFeed =  async (formData, config) => {
