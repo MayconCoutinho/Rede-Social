@@ -1,3 +1,4 @@
+import LogoutIcon from '@mui/icons-material/Logout';
 import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -14,9 +15,12 @@ import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/Auth";
+import { goToPerfilPage } from '../../routes/coordinator';
 import { AvatarPerfil } from '../AvatarPerfil';
 import MenuHamburguer from './MenuHamburguer';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,6 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const HeaderBar = ({rgbColor,name, perfilImg}) => {
   const { headerBarUserInfo, signout } = useContext(AuthContext)  
+  const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -154,8 +159,16 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
           <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
         </IconButton>
         <p
-          onClick={() => {signout()}}
+          onClick={() => {goToPerfilPage(navigate)}}
         >{ headerBarUserInfo?.name }</p>
+      </MenuItem>
+      <MenuItem>
+      <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <LogoutIcon  />
+        </IconButton>
+        <p onClick={() => { signout() }}>
+          Sair
+        </p>
       </MenuItem>
     </Menu>
   );

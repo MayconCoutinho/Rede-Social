@@ -1,15 +1,19 @@
 import { Box, Button, Stack, TextField } from "@mui/material";
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import facebookImg from "../../assets/img/login/facebook-icon.png";
+import googleImg from "../../assets/img/login/google-icon.png";
 import { useForm } from "../../hooks/useForm";
 import { goToLoginPage } from "../../routes/coordinator";
 import { PostSignup } from "../../services";
+import { FirebaseConfigChave } from "../../services/firebase";
 
 export const Register = () => {
   const navigate = useNavigate();
 
-  const {formValues, onChange} = useForm({
+  const { formValues, onChange } = useForm({
     name: "",
-    email : "",
+    email: "",
     password: "",
   })
 
@@ -17,7 +21,22 @@ export const Register = () => {
     PostSignup(formValues)
     // goToHomePage(navigate)
   }
-
+  const FacebookLogar = async () => {
+    const auth = getAuth(FirebaseConfigChave())
+    const provider = new FacebookAuthProvider()
+    const { _tokenResponse } = await signInWithPopup(auth, provider)
+    const { firstName, email, idToken } = _tokenResponse
+    await PostSignup(firstName, email, idToken)
+  }
+  const GoogleLogar = async () => {
+    const auth = getAuth(FirebaseConfigChave())
+    const provider = new GoogleAuthProvider()
+    const { _tokenResponse } = await signInWithPopup(auth, provider)
+    const { emailVerified, firstName, email, idToken } = _tokenResponse
+    if (emailVerified) {
+      await PostSignup(firstName, email, idToken)
+    }
+  }
   return (
     <>
       <Box
@@ -51,7 +70,7 @@ export const Register = () => {
 
             <Stack>
 
-            <TextField
+              <TextField
                 id="standard-basic"
                 label="Nome"
                 variant="standard"
@@ -98,9 +117,41 @@ export const Register = () => {
                 type={'text'}
               />
             </Stack>
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="flex-stretch"
+              spacing={4}
+            >
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => { GoogleLogar() }}
+                sx={{
+                  backgroundColor: "#fafafa",
+                  paddingLeft: 6,
+                  paddingRight: 6,
+                  ":hover": {
+                    backgroundColor: "#f1f1f1",
+                  }
+                }}
+              >
+                <img src={googleImg} style={{ width: 30 }} />
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => { FacebookLogar() }}
+                sx={{
+                  paddingLeft: 6,
+                  paddingRight: 6,
+                }}
+              >
+                <img src={facebookImg} style={{ width: 30 }} />
+              </Button>
+            </Stack>
             <Button
               onClick={() => { goToLoginPage(navigate) }}
-
               sx={{
                 color: "#ffffff",
                 width: 300,
@@ -114,9 +165,8 @@ export const Register = () => {
               size="small"
               variant="contained"
             > Voltar </Button>
-
             <Button
-              onClick={() => { Signup()}}
+              onClick={() => { Signup() }}
               sx={{
                 color: "#ffffff",
                 width: 300,

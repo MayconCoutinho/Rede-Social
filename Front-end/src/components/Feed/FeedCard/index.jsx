@@ -14,12 +14,28 @@ import { AvatarPerfil } from '../../AvatarPerfil';
 
 export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, img, texto, }) => {
   const ConvertendoDataHora = (item) => {
-    const data1 = item.substr(0, 10).split("-").reverse()
-    const hora1 = item.substr(11, 5).replace(":", "h")
-    return  hora1 + " " + data1[0] + "/" + data1[1] + "/" + data1[2]
+    const data = item.substr(0, 10).split("-").reverse()
+    const hora = item.substr(11, 5).split(":")
+    const newDate = new Date().toISOString()
+    const dataNew = newDate.substr(0, 10).split("-").reverse()
+    const horaNew = newDate.substr(11, 5).split(":")
+
+    const tempo = (
+      dataNew[0] > data[0] ? `${dataNew[0] - data[0]} dias` :
+        dataNew[1] > data[1] ? `${dataNew[1] - data[1]} mês` :
+          dataNew[0] > data[0] ? `${dataNew[0] - data[0]} dias` :
+            dataNew[0] === data[0] ? horaNew[0] > hora[0] ? `${horaNew[0] - hora[0]} h` :
+              horaNew[1] - hora[1] === 0 ? "Agora mesmo" : `${horaNew[1] - hora[1]} min` : " "
+    )
+    return tempo
   }
   return (
-    <Card sx={{ width: 345 }}>
+    <Card sx={{
+      width: 345,
+      '@media (min-width: 600px)': {
+        width: 600,
+      }
+    }}>
 
       <CardHeader
         avatar={
@@ -44,10 +60,13 @@ export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, i
           :
           <CardMedia
             component="img"
-            height="194"
+            height="auto"
             loading="lazy"
             image={img}
             alt={img}
+            sx={{
+              maxHeight: "600px"
+            }}
           />
       }
       <Stack

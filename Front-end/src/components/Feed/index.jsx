@@ -5,10 +5,9 @@ export const GridFeed = ({feed}) => {
   return (
     <>
       <Grid
-        gridTemplateColumns={"1fr 1fr 1fr"}
         marginTop={5}
         container
-        direction="row"
+        direction="column"
         justifyContent="space-evenly"
         alignItems="center"
       >
