@@ -22,7 +22,7 @@ export const HomePage = () => {
         user={user}
         UpdatePage={UpdatePage}
       />
-      <GridFeed feed={feed}/>
+      <GridFeed feed={feed} />
       <Footer />
     </>
   )
