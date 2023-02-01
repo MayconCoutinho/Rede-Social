@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalPost({ name, open, setOpen, handleOpen, handleClose, user,UpdatePage }) {
+export default function ModalPost({ name, open, setOpen, handleOpen, handleClose, user, UpdatePage }) {
   const [img, setImg] = useState(null)
 
   const { formValues, onChange, cleanFields } = useForm({
@@ -93,7 +93,15 @@ export default function ModalPost({ name, open, setOpen, handleOpen, handleClose
                   borderRadius: 2,
                 }} />
                 :
-                <img width={280} height={200} src={URL.createObjectURL(img)}/>
+                <Box width={280} height={300}  >
+                  <img style={{
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "scale-down",
+                  }}
+
+                    src={URL.createObjectURL(img)} />
+                </Box>
               }
 
             </IconButton>

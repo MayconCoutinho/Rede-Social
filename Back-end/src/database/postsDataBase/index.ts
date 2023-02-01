@@ -22,16 +22,27 @@ export class PostsDataBase {
             const userCollectionRef = collection(db, "Feed")
             const querySnapshot = await getDocs(userCollectionRef)
             const result = querySnapshot.docs.map((doc) => doc.data())
+
             const filtrandoDadosData = (dataCompleta: any) => {
-                const limpandoData = dataCompleta.substr(0, 10).split('-')
-                const resultData = limpandoData[0] + limpandoData[1] + limpandoData[2]
-                const limpandoHora = dataCompleta.substr(11, 8).split(":")
-                const resultHota = limpandoHora[0] + limpandoHora[1] + limpandoHora[2]
-                const DataHora = resultData + resultHota
+                const day = 0
+                const month = 1
+                const year = 2
+                const hours = 0
+                const min = 1
+                const s = 2
+
+                const limpandoData = dataCompleta.substr(0, 10).split("/")
+                const resultData = limpandoData[day] + limpandoData[month] + limpandoData[year]
+
+                const limpandoHora = dataCompleta.substr(11,7).split(":")
+                const resultHota = limpandoHora[hours] + limpandoHora[min] + limpandoHora[s]
+
+                const DataHora = resultData + resultHota     
+                           
                 return DataHora
               }     
-              const response = result.sort((data1: any, data2: any) => {
-                return filtrandoDadosData(data1.date) - filtrandoDadosData(data2.date)
+              const response = result.sort((firstDate: any, secondDate: any) => {
+                return filtrandoDadosData(firstDate.date) - filtrandoDadosData(secondDate.date)
               })
 
             return response.reverse()

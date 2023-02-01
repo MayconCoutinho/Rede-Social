@@ -13,22 +13,43 @@ import * as React from 'react';
 import { AvatarPerfil } from '../../AvatarPerfil';
 
 export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, img, texto, }) => {
-  const ConvertendoDataHora = (item) => {
-    const data = item.substr(0, 10).split("-").reverse()
-    const hora = item.substr(11, 5).split(":")
-    const newDate = new Date().toISOString()
-    const dataNew = newDate.substr(0, 10).split("-").reverse()
-    const horaNew = newDate.substr(11, 5).split(":")
+  const ConvertingDateTime = (fullDate) => {
 
-    const tempo = (
-      dataNew[0] > data[0] ? `${dataNew[0] - data[0]} dias` :
-        dataNew[1] > data[1] ? `${dataNew[1] - data[1]} mês` :
-          dataNew[0] > data[0] ? `${dataNew[0] - data[0]} dias` :
-            dataNew[0] === data[0] ? horaNew[0] > hora[0] ? `${horaNew[0] - hora[0]} h` :
-              horaNew[1] - hora[1] === 0 ? "Agora mesmo" : `${horaNew[1] - hora[1]} min` : " "
-    )
-    return tempo
+    const date = fullDate.substr(0, 10).split("/")
+    const hour = fullDate.substr(11, 5).split(":")
+
+    const newDate = new Date().toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"})
+
+
+    const dateNow = newDate.substr(0, 10).split("/")
+    const hourNew = newDate.substr(11, 5).split(":")
+
+    const day = 0
+    const month = 1
+    const year = 2
+    const hours = 0
+    const min = 1
+
+    if (dateNow[year] > date[year]) {
+      return (dateNow[year] - date[year]) + " ano"
+    }
+    if (dateNow[month] > date[month]) {
+      return (dateNow[month] - date[month]) + " mês"
+    }
+    if (dateNow[day] > date[day]) {
+      return (dateNow[day] - date[day]) + " dia"
+    }
+    if (hourNew[min] > hour[min]) {
+      return (hourNew[min] - hour[min]) + " min"
+    }
+    if (hourNew[hours] > hour[hours]) {
+      return (hourNew[hours] - hour[hours]) + " h"
+    }
+    if (hourNew[hours] - hour[hours] === 0) {
+      return "Agora mesmo"
+    }
   }
+
   return (
     <Card sx={{
       width: 345,
@@ -39,7 +60,7 @@ export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, i
 
       <CardHeader
         avatar={
-          <AvatarPerfil perfilImg={perfilImg} rgbColor={rgb} />
+          <AvatarPerfil perfilImg={perfilImg} rgbColor={rgb} name={name} />
         }
         action={
           <IconButton aria-label="settings">
@@ -47,7 +68,7 @@ export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, i
           </IconButton>
         }
         title={name}
-        subheader={ConvertendoDataHora(date)}
+        subheader={ConvertingDateTime(date)}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

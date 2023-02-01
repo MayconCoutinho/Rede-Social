@@ -39,9 +39,8 @@ export class PostsBusiness {
     const name = getInfo?.name
     const imgPerfil = getInfo?.imgPerfil
     const rgb = getInfo?.rgb
-    const date = new Date().toISOString()
+    const date = new Date().toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"})
     const idUserLike = null
-    
     const post = new Post(
       id,
       idUser.id,
