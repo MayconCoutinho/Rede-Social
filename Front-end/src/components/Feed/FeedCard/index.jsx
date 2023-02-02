@@ -13,43 +13,79 @@ import * as React from 'react';
 import { AvatarPerfil } from '../../AvatarPerfil';
 
 export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, img, texto, }) => {
-  const ConvertingDateTime = (fullDate) => {
-
+  const ConvertingDate = (fullDate) => {
     const date = fullDate.substr(0, 10).split("/")
-    const hour = fullDate.substr(11, 5).split(":")
-
-    const newDate = new Date().toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"})
-
+    const newDate = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
 
     const dateNow = newDate.substr(0, 10).split("/")
+
+    const day = dateNow[0] - date[0]
+    const month = (dateNow[1] - date[1]) * 30
+    const year = (dateNow[2] - date[2]) * 365
+
+    const everyDay = day + month + year
+
+    if (everyDay > 365) {
+      const dayForYear = (everyDay / 365).toFixed()
+
+      if (dayForYear < 2 ) {
+        return dayForYear + " ano"
+      }
+      return dayForYear + " anos"
+    }
+    if (everyDay === 0) {
+      return 0
+    }
+    if (everyDay >= 1 && everyDay <= 30) {
+      if (everyDay === 1) {
+        return everyDay + " dia"
+      }
+      return everyDay + " dias"
+    }
+    if (everyDay => 31 && everyDay <= 365) {
+      const dayForMonth = (everyDay / 30).toFixed()
+      if (dayForMonth < 2) {
+        return dayForMonth + " mês"
+      }
+      return dayForMonth + " meses"
+    }
+
+  }
+  const ConvertingTime = (fullTime) => {
+
+    const hour = fullTime.substr(11, 5).split(":")
+
+    const newDate = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
+
     const hourNew = newDate.substr(11, 5).split(":")
 
-    const day = 0
-    const month = 1
-    const year = 2
-    const hours = 0
-    const min = 1
+    const hours = (hourNew[0] - hour[0]) * 60
+    const min = hourNew[1] - hour[1]
 
-    if (dateNow[year] > date[year]) {
-      return (dateNow[year] - date[year]) + " ano"
+    const everyMinute = hours + min
+
+    if (everyMinute > 60) {
+      if (everyMinute < 120) {
+        return (everyMinute / 60).toFixed() + " hora"
+      }
+      return (everyMinute / 60).toFixed() + " horas"
     }
-    if (dateNow[month] > date[month]) {
-      return (dateNow[month] - date[month]) + " mês"
+    if (everyMinute < 60 && everyMinute > 1) {
+      return everyMinute + " min"
     }
-    if (dateNow[day] > date[day]) {
-      return (dateNow[day] - date[day]) + " dia"
-    }
-    if (hourNew[min] > hour[min]) {
-      return (hourNew[min] - hour[min]) + " min"
-    }
-    if (hourNew[hours] > hour[hours]) {
-      return (hourNew[hours] - hour[hours]) + " h"
-    }
-    if (hourNew[hours] - hour[hours] === 0) {
+    if (everyMinute <= 1) {
       return "Agora mesmo"
     }
   }
-
+  const ConvertingDateTime = (fullDateTime) => {
+    const date = ConvertingDate(fullDateTime)
+    const hour = ConvertingTime(fullDateTime)
+    if (date !== 0) {
+      return date
+    } else {
+      return hour
+    }
+  }
   return (
     <Card sx={{
       width: 345,
