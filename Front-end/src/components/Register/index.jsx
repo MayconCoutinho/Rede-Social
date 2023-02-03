@@ -3,22 +3,22 @@ import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } fr
 import { useNavigate } from "react-router-dom";
 import facebookImg from "../../assets/img/login/facebook-icon.png";
 import googleImg from "../../assets/img/login/google-icon.png";
-import { useForm } from "../../hooks/useForm";
+import { UseForm } from "../../hooks/UseForm";
 import { goToLoginPage } from "../../routes/coordinator";
-import { PostSignup } from "../../services";
+import { PostSignup } from "../../services/Api";
 import { FirebaseConfigChave } from "../../services/firebase";
 
 export const Register = () => {
   const navigate = useNavigate();
 
-  const { formValues, onChange } = useForm({
+  const { formValues, onChange } = UseForm({
     name: "",
     email: "",
     password: "",
   })
 
   const Signup = () => {
-    PostSignup(formValues)
+    PostSignup(formValues.name, formValues.email, formValues.password)
     // goToHomePage(navigate)
   }
   const FacebookLogar = async () => {

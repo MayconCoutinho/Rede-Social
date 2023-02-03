@@ -6,7 +6,7 @@ import { PostUser } from "../../components/PostUser";
 import { AuthContext } from "../../context/Auth";
 
 export const HomePage = () => {
-  const { user, headerBarUserInfo, feed, UpdatePage} = useContext(AuthContext)
+  const { user, headerBarUserInfo, feed, UpdatePage, signout} = useContext(AuthContext)
 
   return (
     <>
@@ -14,6 +14,7 @@ export const HomePage = () => {
         rgbColor={headerBarUserInfo?.rgb}
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}
+        signout={signout}
       />
       <PostUser
         rgbColor={headerBarUserInfo?.rgb}

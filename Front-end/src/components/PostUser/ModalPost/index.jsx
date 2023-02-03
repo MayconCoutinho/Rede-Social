@@ -7,8 +7,8 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useState } from 'react';
-import { useForm } from '../../../hooks/useForm';
-import { PostUserFeed } from '../../../services';
+import { UseForm } from '../../../hooks/UseForm';
+import { PostUserFeed } from '../../../services/Api';
 
 const style = {
   position: 'absolute',
@@ -24,7 +24,7 @@ const style = {
 export default function ModalPost({ name, open, setOpen, handleOpen, handleClose, user, UpdatePage }) {
   const [img, setImg] = useState(null)
 
-  const { formValues, onChange, cleanFields } = useForm({
+  const { formValues, onChange, cleanFields } = UseForm({
     texto: "",
   })
 
@@ -40,6 +40,22 @@ export default function ModalPost({ name, open, setOpen, handleOpen, handleClose
       formData.append('idUser', user)
       formData.append('texto', formValues.texto)
       formData.append('img', img)
+      await PostUserFeed(formData, config)
+      setImg(null)
+      cleanFields()
+      UpdatePage()
+    }
+    if (user && !img) {
+      const config = {
+        headers: {
+          'Accept': '',
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      let formData = new FormData()
+      formData.append('idUser', user)
+      formData.append('texto', formValues.texto)
+      formData.append('img', null)
       await PostUserFeed(formData, config)
       setImg(null)
       cleanFields()

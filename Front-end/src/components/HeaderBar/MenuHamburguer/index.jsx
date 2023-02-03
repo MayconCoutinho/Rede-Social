@@ -57,7 +57,6 @@ export default function MenuHamburguer() {
       </List>
     </Box>
   );
-
   return (
     <div>
       <React.Fragment key={"left"}>

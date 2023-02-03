@@ -10,7 +10,9 @@ export class UsersDataBase {
             email: user.getEmail(),
             password: user.getPassword(),
             rgb: user.getRGB(),
-            imgPerfil: user.getImgPerfil()
+            imgPerfil: user.getImgPerfil(),
+            friends: user.getFriends(),
+            postUser: user.getPostUser()
         }
     }
     public getAllUsersDataBase = async () => {

@@ -5,8 +5,8 @@ import { PerfilUser } from "../../components/PerfilUser";
 import { AuthContext } from "../../context/Auth";
 
 export const PerfilPage = () => {
-  const { user, headerBarUserInfo, feed, UpdatePage } = useContext(AuthContext)
-
+  const { headerBarUserInfo } = useContext(AuthContext)
+  
   return (
     <>
       <HeaderBar

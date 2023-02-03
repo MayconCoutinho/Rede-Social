@@ -4,7 +4,9 @@ export interface IUserDB {
   email: string,
   password: string,
   rgb: [],
-  imgPerfil: {} | null
+  imgPerfil: {} | null,
+  friends: [] | null,
+  postUser: [] | null,
 }
 export class User {
   constructor(
@@ -13,7 +15,10 @@ export class User {
     private email: string,
     private password: string,
     private rgb: [],
-    private imgPerfil: {} | null
+    private imgPerfil: {} | null,
+    private friends: [] | null,
+    private postUser: [] | null,
+
   ) { }
   public getId = () => {
     return this.id
@@ -33,6 +38,12 @@ export class User {
   public getImgPerfil = () => {
     return this.imgPerfil
   }
+  public getFriends = () => {
+    return this.friends
+  }
+  public getPostUser = () => {
+    return this.postUser
+  }
   public setId = (newId: string) => {
     this.id = newId
   }
@@ -50,6 +61,12 @@ export class User {
   }
   public setImgPerfil = (newImgPerfil: {} | null) => {
     this.imgPerfil = newImgPerfil
+  }
+  public setFriends = (newFriends: [] | null) => {
+    this.friends = newFriends
+  }
+  public setPostUser = (newPostUser: [] | null) => {
+    this.postUser = newPostUser
   }
 }
 export interface ISignupInputDTO {

@@ -47,7 +47,7 @@ export class PostsBusiness {
       name,
       imgPerfil,
       rgb,
-      img?.firebaseUrl,
+      img?.firebaseUrl || null,
       texto,
       idUserLike,
       date,

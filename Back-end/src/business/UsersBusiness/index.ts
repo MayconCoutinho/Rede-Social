@@ -57,6 +57,8 @@ export class UsersBusiness {
     const hashedPassword = await this.hashManager.hash(password)
     const rgb: any = this.rgbGenerator.generateRGB()
     const imgPerfil = null
+    const friends = null
+    const postUser = null
 
     const user = new User(
       id,
@@ -64,7 +66,9 @@ export class UsersBusiness {
       email,
       hashedPassword,
       rgb,
-      imgPerfil 
+      imgPerfil,
+      friends,
+      postUser
     )
     await this.usersDataBase.createUser(user)
 
@@ -106,7 +110,9 @@ export class UsersBusiness {
       userDB.email,
       userDB.password,
       userDB.rgb,
-      userDB.imgPerfil
+      userDB.imgPerfil,
+      userDB.friends,
+      userDB.postUser
     )
     const isPasswordCorrect = await this.hashManager.compare(
       password,
