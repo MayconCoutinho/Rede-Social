@@ -1,7 +1,3 @@
-
-
-### 🚧 PROJETO EM ANDAMENTO 🚧
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/60453269/216188774-9349330a-7e20-4039-ad76-ece09f24096d.png" alt="Logo" width="150" height="150" />
 </p>
@@ -15,6 +11,12 @@
 </p>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+<br /> 
+
+### 🚧 PROJETO EM ANDAMENTO 🚧
+
+<br /> 
 
 ## ➤ 🤳🏻 Mobile
 
