@@ -18,7 +18,14 @@
 
 <br /> 
 
-## ➤ 🤳🏻 Mobile
+<details>
+<summary>
+
+## Front-end
+
+</summary>
+
+### ➤ 🤳🏻 Mobile
 
 
 Login | Registro | Feed | Menu |
@@ -48,5 +55,5 @@ Modal Post | Menu Hamburger | Feed |
 ![HomePage](https://user-images.githubusercontent.com/60453269/216198241-b8096789-5ac3-44c9-80f0-1b476f27b7ed.png) | ![Detalhes](https://user-images.githubusercontent.com/60453269/216196820-933c5b3a-63b5-4373-abae-1e424969931f.png) | ![Detalhes](https://user-images.githubusercontent.com/60453269/216196818-2db64773-92e4-458d-80fc-70712bc1d7bd.png)
   
   
-
+<details/>
   
