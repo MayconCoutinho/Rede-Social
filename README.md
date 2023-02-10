@@ -122,16 +122,15 @@ Modal Post | Menu Hamburger | Feed |
 
 ```JSON
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "firebase": "^9.15.0",
-    "firebase-admin": "^11.5.0",
-    "jsonwebtoken": "^9.0.0",
-    "multer": "^1.4.5-lts.1",
-    "mysql": "^2.18.1",
-    "uuid": "^9.0.0"
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "firebase": "^9.15.0",
+        "firebase-admin": "^11.5.0",
+        "jsonwebtoken": "^9.0.0",
+        "multer": "^1.4.5-lts.1",
+        "uuid": "^9.0.0"
       }
 
 ```
@@ -143,18 +142,18 @@ Modal Post | Menu Hamburger | Feed |
 
 ```JSON
       "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/cors": "^2.8.13",
-    "@types/express": "^4.17.15",
-    "@types/jest": "^29.2.6",
-    "@types/jsonwebtoken": "^9.0.0",
-    "@types/multer": "^1.4.7",
-    "@types/node": "^18.11.18",
-    "@types/uuid": "^9.0.0",
-    "jest": "^29.4.0",
-    "ts-jest": "^29.0.5",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^4.9.4"
+        "@types/bcryptjs": "^2.4.2",
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.15",
+        "@types/jest": "^29.2.6",
+        "@types/jsonwebtoken": "^9.0.0",
+        "@types/multer": "^1.4.7",
+        "@types/node": "^18.11.18",
+        "@types/uuid": "^9.0.0",
+        "jest": "^29.4.0",
+        "ts-jest": "^29.0.5",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^4.9.4"
       }
 
 ```
