@@ -21,6 +21,7 @@ export class PostsBusiness {
     // validar o token pegar o resultado e ver se exite no banco de dados. 
     // Tenho que pensar qual é a melhor forma, se é criar uma api em que pega e
     // o id do token e confirma isso ou outro metodo 
+    
     const validation: any = this.authenticator.getTokenPayload(token)
 
     const response = await this.postsDataBase.getAllPostsDataBase()

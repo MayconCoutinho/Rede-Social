@@ -21,7 +21,7 @@ export class PostsDataBase {
     public getAllPostsDataBase = async () => {
         try {
             const db = FirebaseConfigChave()
-            const userCollectionRef = collection(db, "Feed")
+            const userCollectionRef = collection(db, "usuarios")
             const querySnapshot = await getDocs(userCollectionRef)
             const result = querySnapshot.docs.map((doc) => doc.data())
 
@@ -53,8 +53,10 @@ export class PostsDataBase {
         }
     }
     public createPost = async (post: any) => {
+        // pegar todos posts antigos e adicionar o novo
+        
         const postDB = this.toPostDBModel(post)
         const db = FirebaseConfigChave()
-        updateDoc(doc(db, "usuarios", postDB.idUser), {postUser : [postDB, postDB, postDB]});
+        updateDoc(doc(db, "usuarios", postDB.idUser), {postUser : [, postDB]});
     }
 }

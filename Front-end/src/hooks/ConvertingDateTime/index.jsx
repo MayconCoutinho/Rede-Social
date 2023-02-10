@@ -32,7 +32,6 @@ export const ConvertingDateTime = (fullDateTime) => {
       }
       return dayForMonth + " meses"
     }
-
   }
   const ConvertingTime = (fullTime) => {
 
@@ -60,6 +59,7 @@ export const ConvertingDateTime = (fullDateTime) => {
       return "Agora mesmo"
     }
   }
+  
     const date = ConvertingDate(fullDateTime)
     const hour = ConvertingTime(fullDateTime)
 
