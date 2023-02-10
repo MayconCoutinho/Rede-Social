@@ -1,8 +1,7 @@
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
-import { IUserDB, User } from "../../models/User";
-import { FirebaseConfigChave } from "../firebase";
+import { IUserDB, User } from "../../../src/models/User";
 
-export class UsersDataBase {
+
+export class UserDatabaseMock {
     public toUserDBModel = (user: User): IUserDB => {
         return {
             id: user.getId(),
@@ -16,28 +15,33 @@ export class UsersDataBase {
         }
     }
     public getAllUsersDataBase = async () => {
-        try {
-            const db = FirebaseConfigChave()
-            const userCollectionRef = collection(db, "usuarios")
-            const querySnapshot = await getDocs(userCollectionRef)
-            const getUsers = querySnapshot.docs.map((doc) => doc.data())
-            const result = getUsers?.filter((item) => { return item }).map((item: any) => {
-                return item
-            })
-            return result
-        } catch (error: any) {
-            console.log(error.response)
-        }
+        const result = [
+            {
+                date: "data-atual-mock",
+                id: "id-mock-1",
+                idUser: "id-user-mock",
+                idUserLike: null,
+                imgPerfil: null,
+                name: "zoro1",
+                rgb: [31, 32, 33]
+            },
+            {
+                date: "data-atual-mock",
+                id: "id-mock-2",
+                idUser: "id-user-mock",
+                idUserLike: null,
+                imgPerfil: null,
+                name: "zoro2",
+                rgb: [31, 32, 33]
+            }
+        ]
+        return result
     }
     public getUsersDataBase = async (token: any) => {
-        try {
             const { id } = token
-            const getAllUsers  = await this.getAllUsersDataBase()
-            const result = getAllUsers?.filter((item) => { return item?.id === id})
+            const getAllUsers = await this.getAllUsersDataBase()
+            const result = getAllUsers?.filter((item) => { return item?.id === id })
             return result
-        } catch (error: any) {
-            console.log(error.response)
-        }
     }
     public findByEmail = async (email: string): Promise<any> => {
         const getUserfindByEmail = await this.getAllUsersDataBase()
@@ -55,7 +59,7 @@ export class UsersDataBase {
         const mapEmail: void[] | undefined = getUserfindByEmail?.map((item) => { return item })
         const checkingAllEmail: any = mapEmail?.filter((item: any) => {
             if (item?.email === email) {
-               return item
+                return item
             }
             return undefined
         })
@@ -66,7 +70,7 @@ export class UsersDataBase {
         const mapEmail: void[] | undefined = getUserfindByEmail?.map((item) => { return item })
         const checkingAll: any = mapEmail?.filter((item: any) => {
             if (item?.id === id) {
-               return item
+                return item
             }
             return undefined
         })
@@ -74,7 +78,6 @@ export class UsersDataBase {
     }
     public createUser = async (user: any) => {
         const userDB = this.toUserDBModel(user)
-        const db = FirebaseConfigChave()
-        setDoc(doc(db, "usuarios", userDB.id),  userDB );
+        return userDB
     }
 }

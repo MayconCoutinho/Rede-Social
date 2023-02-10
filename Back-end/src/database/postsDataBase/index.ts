@@ -1,10 +1,10 @@
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { IpostDB, Post } from "../../models/post";
 import { FirebaseConfigChave } from "../firebase";
 
 export class PostsDataBase {
     public toPostDBModel = (user: Post): IpostDB => {
-        return {
+        const postUser : IpostDB = {
             id: user.getId(),
             idUser:  user.getIdUser(),
             name:  user.getName(),
@@ -13,13 +13,15 @@ export class PostsDataBase {
             img:  user.getImg(),
             texto:  user.getTexto(),
             idUserLike:  user.getIdUserLike(),
-            date:  user.getDate(),
+            date:  user.getDate()
         }
-    }
+            return  postUser
+        }
+    
     public getAllPostsDataBase = async () => {
         try {
             const db = FirebaseConfigChave()
-            const userCollectionRef = collection(db, "Feed")
+            const userCollectionRef = collection(db, "usuarios")
             const querySnapshot = await getDocs(userCollectionRef)
             const result = querySnapshot.docs.map((doc) => doc.data())
 
@@ -51,8 +53,10 @@ export class PostsDataBase {
         }
     }
     public createPost = async (post: any) => {
+        // pegar todos posts antigos e adicionar o novo
+        
         const postDB = this.toPostDBModel(post)
         const db = FirebaseConfigChave()
-        setDoc(doc(db, "Feed", postDB.id), postDB );
+        updateDoc(doc(db, "usuarios", postDB.idUser), {postUser : [, postDB]});
     }
 }

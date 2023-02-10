@@ -3,6 +3,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -11,13 +12,12 @@ import InputBase from '@mui/material/InputBase';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/Auth";
-import { goToPerfilPage } from '../../routes/coordinator';
+import { goToHomePage, goToPerfilPage } from '../../routes/coordinator';
 import { AvatarPerfil } from '../AvatarPerfil';
 import MenuHamburguer from './MenuHamburguer';
 
@@ -62,8 +62,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const HeaderBar = ({rgbColor,name, perfilImg}) => {
-  const { headerBarUserInfo, signout } = useContext(AuthContext)  
+export const HeaderBar = ({ rgbColor, name, perfilImg }) => {
+  const { headerBarUserInfo, signout } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -106,8 +106,31 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}> {headerBarUserInfo?.name}</MenuItem>
-      <MenuItem onClick={() => {signout()}}>Sair</MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+          onClick={() => { goToPerfilPage(navigate) }}
+        >
+          <AvatarPerfil
+            perfilImg={perfilImg} name={name} rgbColor={rgbColor} />
+        </IconButton>
+        <p
+          onClick={() => { goToPerfilPage(navigate) }}
+        >{headerBarUserInfo?.name}
+        </p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <LogoutIcon />
+        </IconButton>
+        <p onClick={() => { signout() }}>
+          Sair
+        </p>
+      </MenuItem>
     </Menu>
   );
 
@@ -156,15 +179,15 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
           aria-haspopup="true"
           color="inherit"
         >
-          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
+          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor} />
         </IconButton>
         <p
-          onClick={() => {goToPerfilPage(navigate)}}
-        >{ headerBarUserInfo?.name }</p>
+          onClick={() => { goToPerfilPage(navigate) }}
+        >{headerBarUserInfo?.name}</p>
       </MenuItem>
       <MenuItem>
-      <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <LogoutIcon  />
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <LogoutIcon />
         </IconButton>
         <p onClick={() => { signout() }}>
           Sair
@@ -172,12 +195,11 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
       </MenuItem>
     </Menu>
   );
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{        
-        backgroundColor:"#910101"
-}}>
+      <AppBar position="static" sx={{
+        backgroundColor: "#910101"
+      }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -186,16 +208,17 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuHamburguer/>
+            <MenuHamburguer />
           </IconButton>
-          <Typography
+          <Button
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: 'none', sm: 'block', fontWeight: 500 } }}
+            onClick={() => { goToHomePage(navigate) }}
           >
             Social
-          </Typography>
+          </Button>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -230,7 +253,7 @@ export const HeaderBar = ({rgbColor,name, perfilImg}) => {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-          <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor}/>
+              <AvatarPerfil perfilImg={perfilImg} name={name} rgbColor={rgbColor} />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

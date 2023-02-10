@@ -9,7 +9,7 @@ import facebookImg from "../../assets/img/login/facebook-icon.png";
 import googleImg from "../../assets/img/login/google-icon.png";
 
 import { AuthContext } from "../../context/Auth";
-import { useForm } from "../../hooks/useForm";
+import { UseForm } from "../../hooks/UseForm";
 import { goToCadastroPage } from "../../routes/coordinator";
 import { FirebaseConfigChave } from "../../services/firebase";
 
@@ -24,7 +24,7 @@ export const Login = () => {
     setChecked(event.target.checked);
   };
 
-  const { formValues, onChange } = useForm({
+  const { formValues, onChange } = UseForm({
     email: "",
     password: "",
   })

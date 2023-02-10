@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { goToHomePage } from "../../routes/coordinator";
-import { GetFeed, GetInfoUser, PostLogin } from "../../services";
+import { GetFeed, GetInfoUser, PostLogin } from "../../services/Api";
 
 export const AuthContext = createContext({})
 
