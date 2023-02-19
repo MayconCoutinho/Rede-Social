@@ -166,6 +166,15 @@ Modal Post | Menu Hamburger | Feed |
 <br /> 
 
 - [ ] ***- Testa todo o código.*** 
+- [ ] ***- Pesquisar o perfil com nome*** 
+- [ ] ***- Criar funcionalides para notificações*** 
+- [ ] ***- Criar funcionalides gostei***
+- [ ] ***- Criar comentario em postagens***
+- [ ] ***- Criar forma de compartilhar ou salvar post*** 
+- [ ] ***- Adicionar amigos*** 
+- [ ] ***- Ver post apenas de amigos***
+- [ ] ***- Excluir Post***
+- [ ] ***- Editar Post*** 
 
 
 <br /> 
