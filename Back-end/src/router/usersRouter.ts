@@ -6,6 +6,7 @@ import { Authenticator } from '../services/Authenticator'
 import { HashManager } from '../services/HashManager'
 import { IdGenerator } from '../services/IdGenerator'
 import { RGBGenerator } from '../services/RGBGenarator'
+import { PostsDataBase } from '../database/postsDataBase'
 
 export const usersRouter = Router()
 
@@ -15,9 +16,11 @@ const usersController = new UsersController(
         new RGBGenerator(),
         new IdGenerator(),
         new HashManager(),
-        new Authenticator()
+        new Authenticator(),
+        new PostsDataBase(),
     )
 )
 usersRouter.get("/", usersController.getUsers)
+usersRouter.get("/perfil", usersController.getPerfilUser)
 usersRouter.post("/register", usersController.signup)
 usersRouter.post("/login", usersController.login)

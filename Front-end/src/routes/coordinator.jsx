@@ -8,7 +8,10 @@ export const goToHomePage = (navigate) => {
   navigate("/")
 }
 export const goToPerfilPage = (navigate) => {
-  navigate("/Perfil")
+  navigate(`/Perfil`)
+}
+export const goToPerfilFriendsPage = (navigate,id) => {
+  navigate(`/Perfil/${id}`)
 }
 export const goToVoltar = (navigate) => {
   navigate(-1)

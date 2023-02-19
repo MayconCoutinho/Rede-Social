@@ -20,7 +20,7 @@ export class Post {
     private idUser: string,
     private name: string,
     private imgPerfil: string,
-    private   rgb: [],
+    private rgb: [],
     private img: string | null,
     private texto: string,
     private idUserLike: string[] | null,

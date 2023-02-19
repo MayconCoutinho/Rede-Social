@@ -20,6 +20,19 @@ export class UsersController {
             res.status(500).send({ message: "Erro inesperado no endpoint ping" })
         }
     }
+    public getPerfilUser = async (req: Request, res: Response) => {
+      try {
+          const idUser : string | undefined = req.headers.authorization
+          const response = await this.usersBusiness.getPerfilUserBussines(idUser)
+          res.status(200).send(response)
+      } catch (error) {
+    console.log(error)
+          if (error instanceof BaseError) {
+              return res.status(error.statusCode).send({ message: error.message })
+          }
+          res.status(500).send({ message: "Erro inesperado no endpoint ping" })
+      }
+  }
     public postUser = async (req: Request, res: Response) => {
         try {
             const response = "await this.usersBusiness.getUsersBussines()"

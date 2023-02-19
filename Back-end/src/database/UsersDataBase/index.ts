@@ -39,6 +39,30 @@ export class UsersDataBase {
             console.log(error.response)
         }
     }
+    public getPerfilUserDataBase = async (idUser:string, postUser: any) => {
+      try {     
+        const getUserId = await this.getAllUsersDataBase()
+        const mapEmail: void[] | undefined = getUserId?.map((item) => { return item })
+        const checkingAllId: any = mapEmail?.filter((item: any) => {
+            if (item?.id === idUser) {
+               return item 
+            }
+            return undefined
+        })
+        const filtercheckingAllId = checkingAllId.map((item: any) => {
+          return {
+            id:item.id,
+            imgPerfil:item.imgPerfil,
+            name:item.name,
+            rgb:item.rgb
+          }
+        })
+        return {user:filtercheckingAllId[0], post:postUser}
+        
+      } catch (error: any) {
+          console.log(error.response)
+      }
+  }
     public findByEmail = async (email: string): Promise<any> => {
         const getUserfindByEmail = await this.getAllUsersDataBase()
         const mapEmail: IUserDB[] | undefined = getUserfindByEmail?.map((item) => { return item?.email })

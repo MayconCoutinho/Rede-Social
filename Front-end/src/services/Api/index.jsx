@@ -29,6 +29,7 @@ export const PostSignup =  async (name, email, password) => {
     } 
 };
 export const PostUserFeed =  async (formData, config) => {
+  console.log(formData)
   try {
       const response = await axios.post(`${BASE_URL}posts`, formData, config)
       alert(response.data.message)
@@ -45,9 +46,18 @@ export const GetInfoUser =  async (token) => {
       console.log(error.response)
     } 
 };
+export const GetPerfilUser = async (idUser) => {
+  try {
+      const response = await axios.get(`${BASE_URL}users/perfil`, { headers: { authorization: idUser}})      
+      return response.data
+
+    } catch(error){
+      console.log(error.response)
+    } 
+};
 export const GetFeed =  async (token) => {
   try {
-      const response = await axios.get(`${BASE_URL}posts`, { headers: { authorization: token }})      
+      const response = await axios.get(`${BASE_URL}posts`)      
       return response.data
     } catch(error){
       console.log(error.response)

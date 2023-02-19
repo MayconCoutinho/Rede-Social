@@ -9,8 +9,7 @@ export class PostsController {
     ) { }
     public getPostsController = async (req: Request, res: Response) => {
         try {
-            const token: string | undefined = req.headers.authorization
-            const response = await this.postsBusiness.getPostBussines(token)
+            const response = await this.postsBusiness.getPostBussines()
             res.status(200).send(response)
         } catch (error) {
             console.log(error)

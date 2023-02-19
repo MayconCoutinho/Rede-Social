@@ -12,8 +12,12 @@ import { Stack } from '@mui/system';
 import * as React from 'react';
 import { ConvertingDateTime } from '../../../hooks/ConvertingDateTime';
 import { AvatarPerfil } from '../../AvatarPerfil';
+import { useNavigate } from 'react-router-dom';
+import { goToPerfilFriendsPage } from '../../../routes/coordinator';
 
 export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, img, texto, }) => {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{
       width: 345,
@@ -23,7 +27,9 @@ export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, i
     }}>
       <CardHeader
         avatar={
-          <AvatarPerfil perfilImg={perfilImg} rgbColor={rgb} name={name} />
+          <Stack onClick={() => {goToPerfilFriendsPage(navigate, idUser)}}> 
+            <AvatarPerfil perfilImg={perfilImg} rgbColor={rgb} name={name} />
+          </Stack>
         }
         action={
           <IconButton aria-label="settings">

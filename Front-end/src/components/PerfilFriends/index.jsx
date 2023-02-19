@@ -5,7 +5,7 @@ import { GridFeed } from "../Feed"
 import { GetPerfilUser } from "../../services/Api"
 import { useState } from "react"
 
-export const PerfilUser = ({ id }) => {  
+export const PerfilFriends = ({ id }) => {  
   const [user, setUser] = useState(null)
   const [post, setPost] = useState(null)
 
