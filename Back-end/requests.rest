@@ -1,12 +1,3 @@
-### Ping
-GET http://localhost:3003/users
-Content-Type: application/json
-Authorization: Bearer ACCESS-TOKEN
-
-{
-     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyM2VhOTk3LTM4NTQtNDFhMi05YzBmLTNlZjdhNDY0YTZkNCIsImlhdCI6MTY3NDU3MDQ4Mn0.UzLX_I-Qtd59cF-0nanlOq67L4ycn72WyriVjtlQOeQ"
-}
-
 ### PerfilUser
 GET http://localhost:3003/users/perfil
 Content-Type: application/json

@@ -29,16 +29,6 @@ export class UsersDataBase {
             console.log(error.response)
         }
     }
-    public getUsersDataBase = async (token: any) => {
-        try {
-            const { id } = token
-            const getAllUsers  = await this.getAllUsersDataBase()
-            const result = getAllUsers?.filter((item) => { return item?.id === id})
-            return result
-        } catch (error: any) {
-            console.log(error.response)
-        }
-    }
     public getPerfilUserDataBase = async (idUser:string, postUser: any) => {
       try {     
         const getUserId = await this.getAllUsersDataBase()

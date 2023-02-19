@@ -15,7 +15,7 @@ import { AvatarPerfil } from '../../AvatarPerfil';
 import { useNavigate } from 'react-router-dom';
 import { goToPerfilFriendsPage } from '../../../routes/coordinator';
 
-export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, img, texto, }) => {
+export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, img, texto, admin }) => {
   const navigate = useNavigate();
 
   return (
@@ -27,7 +27,10 @@ export const FeedCard = ({ date, id, idUser, name, perfilImg, rgb, idUserLike, i
     }}>
       <CardHeader
         avatar={
-          <Stack onClick={() => {goToPerfilFriendsPage(navigate, idUser)}}> 
+          <Stack 
+          justifyContent="center"
+          alignItems="center"
+          sx={{ '&:hover': {cursor:"pointer",background: "#d1d1d1", borderRadius:"50%", width:50, height:50}}} onClick={() => {goToPerfilFriendsPage(navigate, idUser)}}> 
             <AvatarPerfil perfilImg={perfilImg} rgbColor={rgb} name={name} />
           </Stack>
         }
