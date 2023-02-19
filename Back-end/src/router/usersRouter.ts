@@ -20,7 +20,6 @@ const usersController = new UsersController(
         new PostsDataBase(),
     )
 )
-usersRouter.get("/", usersController.getUsers)
 usersRouter.get("/perfil", usersController.getPerfilUser)
 usersRouter.post("/register", usersController.signup)
 usersRouter.post("/login", usersController.login)

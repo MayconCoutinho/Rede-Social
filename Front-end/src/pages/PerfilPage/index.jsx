@@ -6,8 +6,7 @@ import { AuthContext } from "../../context/Auth";
 import { useParams } from "react-router-dom";
 
 export const PerfilPage = () => {
-  const { headerBarUserInfo} = useContext(AuthContext)
-  const { id } = useParams()
+  const { headerBarUserInfo, feed} = useContext(AuthContext)
 
   return (
     <>
@@ -21,7 +20,7 @@ export const PerfilPage = () => {
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}
         bio={headerBarUserInfo?.bio}
-        id={id}
+        feed={feed}
       />
       <Footer />
     </>

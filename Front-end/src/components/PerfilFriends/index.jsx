@@ -19,7 +19,6 @@ export const PerfilFriends = ({ id }) => {
     setUser(response.user)
     setPost(response.post)
   })
-  console.log(user)
 
   return (
    

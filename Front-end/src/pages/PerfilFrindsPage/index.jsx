@@ -17,10 +17,6 @@ export const PerfilFriendsPage = () => {
         perfilImg={headerBarUserInfo?.imgPerfil}
       />
       <PerfilFriends
-        rgbColor={headerBarUserInfo?.rgb}
-        name={headerBarUserInfo?.name}
-        perfilImg={headerBarUserInfo?.imgPerfil}
-        bio={headerBarUserInfo?.bio}
         id={id}
       />
       <Footer />

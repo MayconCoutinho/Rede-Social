@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { FeedCard } from "./FeedCard";
 
-export const GridFeed = ({ feed }) => {
+export const GridFeed = ({ feed, admin }) => {
   return (
     <Grid
       marginTop={5}
@@ -23,6 +23,7 @@ export const GridFeed = ({ feed }) => {
               idUserLike={item?.idUserLike}
               img={item?.img}
               texto={item?.texto}
+              admin={true}
             />
           </Box>
         </>)

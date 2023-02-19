@@ -21,15 +21,7 @@ import { PostsDataBase } from "../../database/postsDataBase"
       private postsDataBase: PostsDataBase,
       
     ) { }
-    public getUsersBussines = async (token: string | undefined) => {
-      if(!token){
-        throw new HeadersError()
-      }
-      const validation: any = this.authenticator.getTokenPayload(token)
-
-      const response = await this.usersDataBase.getUsersDataBase(validation)
-      return response
-    }
+    
     public getPerfilUserBussines = async (idUser: string | undefined) => {
       if(!idUser){
         throw new HeadersError()
