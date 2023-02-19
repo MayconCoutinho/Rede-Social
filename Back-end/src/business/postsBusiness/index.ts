@@ -13,17 +13,7 @@ export class PostsBusiness {
     private idGenerator: IdGenerator,
     private usersDatabase: UsersDataBase,
   ) { }
-  public getPostBussines = async (token: string | undefined) => {
-    if (!token) {
-      throw new HeadersError()
-    }
-    // Em validation apenas valida se o token existe, mas nesse caso seria melhor,
-    // validar o token pegar o resultado e ver se exite no banco de dados. 
-    // Tenho que pensar qual é a melhor forma, se é criar uma api em que pega e
-    // o id do token e confirma isso ou outro metodo 
-    
-    const validation: any = this.authenticator.getTokenPayload(token)
-
+  public getPostBussines = async () => {
     const response = await this.postsDataBase.getAllPostsDataBase()
     return response
   }
@@ -36,7 +26,7 @@ export class PostsBusiness {
       throw new AuthenticationError() 
     }
     
-    const getInfo = await this.usersDatabase.findByIdLogin(idUser.id)
+    const getInfo = await this.usersDatabase.findByIdLogin(idUser?.id)
     const name = getInfo?.name
     const imgPerfil = getInfo?.imgPerfil
     const rgb = getInfo?.rgb

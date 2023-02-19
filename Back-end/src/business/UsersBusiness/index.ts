@@ -1,4 +1,5 @@
   import { UsersDataBase } from "../../database/UsersDataBase"
+import { PostsDataBase } from "../../database/postsDataBase"
   import { AuthenticationError } from "../../errors/AuthenticationError"
   import { ConflictError } from "../../errors/ConflictError"
   import { HeadersError } from "../../errors/HeaderError"
@@ -16,15 +17,31 @@
       private rgbGenerator: RGBGenerator,
       private idGenerator: IdGenerator,
       private hashManager: HashManager,
-      private authenticator: Authenticator
+      private authenticator: Authenticator,
+      private postsDataBase: PostsDataBase,
+      
     ) { }
     public getUsersBussines = async (token: string | undefined) => {
       if(!token){
         throw new HeadersError()
       }
-      const validation:  any = this.authenticator.getTokenPayload(token)
+      const validation: any = this.authenticator.getTokenPayload(token)
 
       const response = await this.usersDataBase.getUsersDataBase(validation)
+      return response
+    }
+    public getPerfilUserBussines = async (idUser: string | undefined) => {
+      if(!idUser){
+        throw new HeadersError()
+      }
+      
+      const Allpost = await this.postsDataBase.getAllPostsDataBase()
+
+      const postUser = Allpost?.filter((item) => { return item?.idUser === idUser})
+
+
+      const response = await this.usersDataBase.getPerfilUserDataBase(idUser,postUser)
+      
       return response
     }
     public signup = async (input: ISignupInputDTO): Promise<ISignupOutputDTO> => {

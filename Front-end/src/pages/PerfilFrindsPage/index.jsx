@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Footer } from "../../components/Footer";
 import { HeaderBar } from "../../components/HeaderBar";
-import { PerfilUser } from "../../components/PerfilUser";
 import { AuthContext } from "../../context/Auth";
 import { useParams } from "react-router-dom";
+import { PerfilFriends } from "../../components/PerfilFriends";
 
-export const PerfilPage = () => {
+export const PerfilFriendsPage = () => {
   const { headerBarUserInfo} = useContext(AuthContext)
   const { id } = useParams()
 
@@ -16,7 +16,7 @@ export const PerfilPage = () => {
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}
       />
-      <PerfilUser
+      <PerfilFriends
         rgbColor={headerBarUserInfo?.rgb}
         name={headerBarUserInfo?.name}
         perfilImg={headerBarUserInfo?.imgPerfil}

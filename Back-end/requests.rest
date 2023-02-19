@@ -7,13 +7,22 @@ Authorization: Bearer ACCESS-TOKEN
      "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyM2VhOTk3LTM4NTQtNDFhMi05YzBmLTNlZjdhNDY0YTZkNCIsImlhdCI6MTY3NDU3MDQ4Mn0.UzLX_I-Qtd59cF-0nanlOq67L4ycn72WyriVjtlQOeQ"
 }
 
+### PerfilUser
+GET http://localhost:3003/users/perfil
+Content-Type: application/json
+Authorization: Bearer ACCESS-TOKEN
+
+{
+  "authorization" : "aa670248-dbd3-402c-a824-c52646fc1196"
+}
+
 ### Pegar todos os Posts
 GET http://localhost:3003/posts
 Content-Type: application/json
 Authorization: Bearer ACCESS-TOKEN
 
 {
-     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyM2VhOTk3LTM4NTQtNDFhMi05YzBmLTNlZjdhNDY0YTZkNCIsImlhdCI6MTY3NDU3MDQ4Mn0.UzLX_I-Qtd59cF-0nanlOq67L4ycn72WyriVjtlQOeQ"
+     "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFhNjcwMjQ4LWRiZDMtNDAyYy1hODI0LWM1MjY0NmZjMTE5NiIsImlhdCI6MTY3Njc1MDMzMX0.a6yNFdYtoxbkpbWt1LxBIIjFS3w_HOwqwZKtP05zVKQ"
 }
 
 ### Post Feed
