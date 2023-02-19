@@ -76,28 +76,137 @@ Modal Post | Menu Hamburger | Feed |
 <br/>
 
   
-### 🎯 PEGAR TODOS OS PRODUTOS CADASTRADO NO BANCO DE DADOS.
+### 🎯 PEGAR TODOS OS DADOS DE UM USER ATRAVES DO ID 
   
 ### ```GET``` 
 ```URL
- http://localhost:3003/products
+ http://localhost:3003/users/perfil
+ 
+  {
+    "authorization" : "aa670248-dbd3-402c-a824-c52646fc1196"
+  }
+
 ```
   
 ```JSON
-  {
-    "id": "e5a9a1af-c23e-4e10-98fd-ae914f7f6424",
-    "name": "macbook",
-    "category": "laptop",
-    "status": "ACTIVE",
-    "quantity": 10,
-    "created_at": 0,
-    "updated_at": 0,
-    "deleted_at": 0
-  }
+{
+    "user": {
+        "id": "62f7daf9-d523-4b2d-b0cd-94039c5c4082",
+        "imgPerfil": "https://ovicio.com.br/wp-content/uploads/2020/09/20200916-d9ffbeb5e7862a243ce822bb89d12b66_750x750-555x555.jpg",
+        "name": "Toshinori",
+        "rgb": [
+            57,
+            82,
+            65
+        ]
+    },
+    "post": [
+        {
+            "img": "https://firebasestorage.googleapis.com/v0/b/rede-social-203d0.appspot.com/o/feed%2F1676760852632.webp?alt=media&token",
+            "texto": "Outro",
+            "rgb": [
+                57,
+                82,
+                65
+            ],
+            "id": "322ea0a3-1657-4ad1-8f75-4a95a2832394",
+            "date": "18/02/2023, 19:54:14",
+            "idUserLike": null,
+            "imgPerfil": "https://ovicio.com.br/wp-content/uploads/2020/09/20200916-d9ffbeb5e7862a243ce822bb89d12b66_750x750-555x555.jpg",
+            "name": "Toshinori",
+            "idUser": "62f7daf9-d523-4b2d-b0cd-94039c5c4082"
+        },...
+        }
 ```
   
 <br /> 
+
+### 🎯 REGISTRA UM USUSARIO NO BANCO DE DADOS.
   
+### ```POST``` 
+
+```URL
+http://localhost:3003/users/register
+```
+  
+```JSON
+{
+    "name": "teste",
+    "email": "teste@gmail.com",
+    "password": "123456"
+}
+
+```
+
+<br /> 
+
+### 🎯 FAZ LOGIN
+  
+### ```POST``` 
+
+```URL
+http://localhost:3003/users/login
+```
+  
+```JSON
+{
+    "email": "teste@gmail.com",
+    "password": "123456"
+}
+
+```
+
+<br /> 
+
+
+### 🎯 PEGA TODOS OS POSTS
+  
+### ```GET``` 
+
+```URL
+http://localhost:3003/posts
+```
+  
+```JSON
+[
+  {
+    "id": "ed66e018-666f-40e9-a16f-510848491842",
+    "date": "18/02/2023, 19:56:17",
+    "img": "https://firebasestorage.googleapis.com/v0/b/rede-social-203d0.appspot.com/o/feed%2F1676760975303.jpg?alt=media&token",
+    "idUser": "f27d54fd-2edb-4653-af60-bb311a00a5b3",
+    "name": "Asui",
+    "idUserLike": null,
+    "rgb": [
+      73,
+      168,
+      126
+    ],
+    "imgPerfil": "https://i.pinimg.com/originals/3a/2e/9a/3a2e9ab1fbf688f75f9227cc3c66951a.jpg",
+    "texto": "E vai indo"
+  },...
+  ]
+
+```
+
+<br /> 
+
+### 🎯 FAZ LOGIN
+  
+### ```POST``` 
+
+```URL
+http://localhost:3003/posts
+```
+  
+```JSON
+{
+    "idUser": "f27d54fd-2edb-4653-af60-bb311a00a5b3",
+    "texto": "olha eu kkkkk",
+    "img": "Tem como mandar a imagem do pc ou mandar url da imagem, por padrão só tem como manda do pc"
+}
+```
+
+<br />   
 
 <a id="Dependências"></a>
 ## 🧪 Dependências
