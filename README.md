@@ -126,7 +126,9 @@ Modal Post | Menu Hamburger | Feed |
 ### ```POST``` 
 
 ```URL
+
 http://localhost:3003/users/register
+
 ```
   
 ```JSON
@@ -145,7 +147,9 @@ http://localhost:3003/users/register
 ### ```POST``` 
 
 ```URL
+
 http://localhost:3003/users/login
+
 ```
   
 ```JSON
