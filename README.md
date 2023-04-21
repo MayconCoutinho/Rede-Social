@@ -4,6 +4,9 @@
 
 <h1 align="center"> Social </h1>
 
+<a id="Sumário"></a>
+
+
 <p align="center">
   <b> Um projeto fullstack de uma rede social completa e funcional </b></br>
   <sub> Este projeto tem o objetivo de pôr todas minhas habilidades à prova, o projeto foi desenvolvido do "zero", uma grade parte do projeto usei código de terceiros como bibliotecas e tecnologias, no entanto todo o código que foi escrito, foi totalmente desenvolvido por mim.
@@ -34,6 +37,10 @@
   Node.js no Backend e o FireBase no Banco de dados.***
 
 <br/>
+
+<a href="#Sumário"> 📖 Volta ao Sumário </a>
+
+<br /> 
 
 <a id="Resultados"></a>
 ## 🚀 Resultados 
@@ -209,12 +216,30 @@ http://localhost:3003/posts
     "img": "Tem como mandar a imagem do pc ou mandar url da imagem, por padrão só tem como manda do pc"
 }
 ```
+<br/>
 
-<br />   
+<a href="#Sumário"> 📖 Volta ao Sumário </a>
+
+<br /> 
 
 <a id="Dependências"></a>
 ## 🧪 Dependências
 > Requisitos para rotar o codigo...
+
+<br/>
+
+## `📖 Instalação` 
+  
+  
+ <br /> 
+
+> Caso tenha Git basta da git clone, caso não tenha baixe o projeto completo em dowlon
+
+```BASH
+git clone https://github.com/MayconCoutinho/Rede-Social
+```
+
+<br /> 
 
 
 ## `📖 Scripts` 
@@ -271,6 +296,12 @@ http://localhost:3003/posts
 
 ```
 
+<br/>
+
+<a href="#Sumário"> 📖 Volta ao Sumário </a>
+
+<br /> 
+
 
 <a id="Ideias"></a>
 ## 💡 Possíveis Melhoras
@@ -290,6 +321,10 @@ http://localhost:3003/posts
 - [ ] ***- Editar Post*** 
 
 
+<br/>
+
+<a href="#Sumário"> 📖 Volta ao Sumário </a>
+
 <br /> 
 
 <a id="Creditos"></a>
@@ -302,9 +337,7 @@ http://localhost:3003/posts
 | [<img src="https://user-images.githubusercontent.com/60453269/217899761-dc2d4e4b-3336-419d-9076-79304290aa0a.png" width=300><br><sub> Maycon Coutinho </sub>](https://www.linkedin.com/in/maycon-coutinho/) | ***Hello 😃 Se você chegou até aqui, acredito que gostou do meu projeto, nesse caso temos algo em comum, sendo assim que tal conversamos um pouco? Meu chama no linkedin 😁*** | 
 |---|---|
 
-
-
-
 </div> 
 
   
+<br/>
